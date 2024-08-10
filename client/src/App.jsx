@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom';
-import Navbar from './Components/Navbar'
+import {Navbar} from './Components/Navbar'
 // import Chatbot from './Components/Chatbot'
 // import Footer from './Components/Footer'
 import Home from './Pages/Home'
