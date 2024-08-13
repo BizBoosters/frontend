@@ -1,15 +1,27 @@
 import React from 'react'
-import Cards from './Components/Cards'
-import { SidebarWithContentSeparator } from './Components/SideBar'
-import { NavbarSimple } from './Components/Navbar'
+import { SidebarWithSearch } from './Components/SideBar'
+import { NavbarDefault } from './Components/Navbar'
+// import { DefaultGallery } from './Components/Gallery'
+// import { BookingCard } from './Components/Cards'
+import { CardThree } from './Components/Cards'
 // import { HorizontalCard } from './Components/Cards'
 // import { DefaultGallery } from './Pages/Gallery'
 function App() {
   return (
     <>
-      <NavbarSimple/>
-      <SidebarWithContentSeparator/>
-      <Cards />
+    <div className='flex flew-wrap flex-col'>
+        <div className='top  flex flex-wrap justify-center w-full'>
+            <NavbarDefault/>
+        </div>
+        <div className='flex flex-wrap flex-row '>
+            <div>
+              <SidebarWithSearch/>
+            </div>
+            <div>
+              <CardThree/>
+            </div>
+        </div>
+    </div>
     </>
   )
 }
