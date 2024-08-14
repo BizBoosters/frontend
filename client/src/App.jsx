@@ -1,26 +1,23 @@
 import React from 'react'
-import { SidebarWithSearch } from './Components/SideBar'
 import { NavbarDefault } from './Components/Navbar'
-// import { DefaultGallery } from './Components/Gallery'
-// import { BookingCard } from './Components/Cards'
 import { CardThree } from './Components/Cards'
-// import { HorizontalCard } from './Components/Cards'
-// import { DefaultGallery } from './Pages/Gallery'
+import { FooterFour } from './Components/Footer'
+import { FeatureTwo } from './Components/Feature'
+import { ProductTwo } from './Components/Cards1'
 function App() {
   return (
     <>
     <div className='flex flew-wrap flex-col'>
-        <div className='top  flex flex-wrap justify-center w-full'>
+        <div className='flex flex-wrap justify-center w-full'>
             <NavbarDefault/>
         </div>
         <div className='flex flex-wrap flex-row '>
             <div>
-              <SidebarWithSearch/>
-            </div>
-            <div>
-              <CardThree/>
+              <ProductTwo/>
             </div>
         </div>
+        <FeatureTwo/>
+        <FooterFour/>
     </div>
     </>
   )
