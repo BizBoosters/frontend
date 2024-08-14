@@ -3,7 +3,9 @@ import { NavbarDefault } from './Components/Navbar'
 import { CardThree } from './Components/Cards'
 import { FooterFour } from './Components/Footer'
 import { FeatureTwo } from './Components/Feature'
-import { ProductTwo } from './Components/Cards1'
+import Search from './Components/Search'
+// import { ProductTwo } from './Components/Cards1'
+// import { Card } from '@material-tailwind/react'
 function App() {
   return (
     <>
@@ -11,9 +13,12 @@ function App() {
         <div className='flex flex-wrap justify-center w-full'>
             <NavbarDefault/>
         </div>
+        <div className='mt-20'>
+          <Search/>
+        </div>
         <div className='flex flex-wrap flex-row '>
             <div>
-              <ProductTwo/>
+              <CardThree/>
             </div>
         </div>
         <FeatureTwo/>
