@@ -11,7 +11,6 @@ import {
   AccordionHeader,
   AccordionBody,
   Alert,
-  Input,
 } from "@material-tailwind/react";
 import {
   PresentationChartBarIcon,
@@ -25,10 +24,9 @@ import {
   ChevronRightIcon,
   ChevronDownIcon,
   CubeTransparentIcon,
-  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
  
-export function SidebarWithSearch() {
+export function SidebarWithLogo() {
   const [open, setOpen] = React.useState(0);
   const [openAlert, setOpenAlert] = React.useState(true);
  
@@ -37,15 +35,12 @@ export function SidebarWithSearch() {
   };
  
   return (
-    <Card className="fixed top-16 mx- h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 rounded-none">
-      <div className="mb-2 flex items-center gap-4 p-4">
+    <Card className="h-full fixed z-50 w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+      <div className="mb-2 flex items-center gap-4 p-4 ">
         <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" className="h-8 w-8" />
         <Typography variant="h5" color="blue-gray">
           Sidebar
         </Typography>
-      </div>
-      <div className="p-2">
-        <Input icon={<MagnifyingGlassIcon className="h-5 w-5" />} label="Search" />
       </div>
       <List>
         <Accordion
