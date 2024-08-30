@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 import { BookingCard } from "../Components/Cards1";
 import { SidebarWithLogo } from "../Components/SideBar";
 

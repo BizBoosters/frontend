@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 import { CardThree } from '../Components/Cards'
 import { FooterFour } from '../Components/Footer'
 import { FeatureTwo } from '../Components/Feature'
