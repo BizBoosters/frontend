@@ -10,6 +10,7 @@ module.exports = withMT({
     extend: {
       fontFamily:{
         primary: ['Plus Jakarta Sans', 'sans-serif'],
+        logowala: ['ES Klarheit Kurrent'],
       },
       colors:{
         blue:{

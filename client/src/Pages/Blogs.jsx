@@ -1,8 +1,11 @@
 import React from 'react'
+import { SidebarWithSearch } from '../Components/SideBar'
 
 const Blogs = () => {
   return (
-    <div>Blogs</div>
+    <div>
+      <SidebarWithSearch/>
+    </div>
   )
 }
 
