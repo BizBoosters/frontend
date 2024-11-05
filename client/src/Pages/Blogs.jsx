@@ -1,22 +1,36 @@
 // <<<<<<< HEAD
 import { BookingCard } from "../Components/Cards1";
-import { SidebarWithLogo } from "../Components/SideBar";
+// import { SidebarWithLogo } from "../Components/SideBar";
+import { SidebarWithSearch } from '../Components/SideBar'
+import { CardThree } from '../Components/Cards'
+import { FooterFour } from '../Components/Footer'
+import { FeatureTwo } from '../Components/Feature'
+// import { NavbarDefault } from '../Components/Navbar'
+import Search from '../Components/Search'
 
 const Blogs = () => {
   return ( 
   <div className="flex flex-row" >
     <div>
-    <SidebarWithLogo/>
+    <SidebarWithSearch/>
     </div>
-    <div className="ml-[22rem] mt-2 grid grid-cols-3  gap-4 "> 
-        <BookingCard/>
-        <BookingCard/>
-        <BookingCard/>  
-        <BookingCard/>  
-        <BookingCard/>  
-        <BookingCard/>  
-
-    </div>    
+     <div>
+        <div className='flex flew-wrap flex-col'>
+        <div className='flex flex-wrap justify-center w-full'>
+            {/* <NavbarDefault/> */}
+        </div>
+        <div className='mt-20'>
+          {/* <Search/> */}
+        </div>
+        <div className='flex flex-wrap flex-row '>
+            <div>
+              <CardThree/>
+            </div>
+        </div>
+        {/* <FeatureTwo/>
+        <FooterFour/> */}
+    </div>
+    </div>
   </div> 
   );
 }
