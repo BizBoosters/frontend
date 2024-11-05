@@ -12,7 +12,10 @@ import SidebarIconClosed from '../assets/newSideclosed.svg';
 
 export function SidebarWithSearch() {
   const [collapsed, setCollapsed] = useState(false);
+
   const location = useLocation(); // Get the current route location
+  const activePath = location.pathname;
+
   const toggleSidebar = () => setCollapsed(!collapsed);
   const [activeItem, setActiveItem] = useState(1);
   // const menuItems = [
@@ -23,7 +26,7 @@ export function SidebarWithSearch() {
   // ];
 
   return (
-    <div className={`relative shadow-md h-screen ${collapsed ? "w-16" : "w-64"} transition-width duration-300`}>
+    <div className={`relative border-r-[1px] h-screen ${collapsed ? "w-16" : "w-64"} transition-width duration-300`}>
       <div className={`h-full w-1/5 max-w-[20rem] p-4 pt-0 shadow-xl shadow-blue-gray-900/5 rounded-none ${collapsed ? "w-16" : "w-64"}`}>
 
         <div className="h-[81px] items-center flex">
@@ -41,25 +44,25 @@ export function SidebarWithSearch() {
 
         <List className="font-primary">
           <Link to="/" onClick={() => setActiveItem(1)}>
-            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100  ${activeItem === 1 ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100  ${activePath === "/" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <HomeOutlineIcon className="size-5" />
               {!collapsed && "Home"}
             </div>
           </Link>
           <Link to="/blogs" onClick={() => setActiveItem(2)}>
-            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activeItem === 2 ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/blogs" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <ChatBubbleOvalLeftIcon className="size-5" />
               {!collapsed && "Blogs"}
             </div>
           </Link>
           <Link to="/community" onClick={() => setActiveItem(3)}>
-            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activeItem === 3 ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/community" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <UserGroupIcon className="size-5" />
               {!collapsed && "Community"}
             </div>
           </Link>
           <Link to="/raise-funds" onClick={() => setActiveItem(4)}>
-            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activeItem === 4 ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/raise-funds" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <BanknotesIcon className="size-5" />
               {!collapsed && "Raise Funds"}
             </div>

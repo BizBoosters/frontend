@@ -41,24 +41,11 @@ import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from 'react-dom/client';
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {SidebarWithSearch} from "./Components/SideBar"; 
-import HomePage from "./Pages/Home";  
-import BlogsPage from "./Pages/Blogs";  
-import CommunityPage from "./Pages/Community";  
-import RaiseFundsPage from "./Pages/RaiseFunds";  
+import App from "./App";
 import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      {/* <SidebarWithSearch />  */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />          
-        <Route path="/blogs" element={<BlogsPage />} />    
-        <Route path="/community" element={<CommunityPage />} />  
-        <Route path="/raise-funds" element={<RaiseFundsPage />} />  
-      </Routes>
-    </BrowserRouter>
+    <App />
   </StrictMode>,
 );
