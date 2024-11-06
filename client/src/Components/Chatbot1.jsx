@@ -36,7 +36,7 @@ const ChatbaseChatbot = () => {
     // Wait for the iframe to load and then inject the CSS
     const iframeLoadInterval = setInterval(() => {
       injectCSS();
-    }, 10000000000);
+    }, 100000);
 
     // Clean up interval and script when component unmounts
     return () => {

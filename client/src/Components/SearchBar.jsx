@@ -1,5 +1,5 @@
 import React from "react";
-import { DocSearch } from "@docsearch/react";
+// import { DocSearch } from "@docsearch/react";
 import { Input } from "@material-tailwind/react";
  
 const APP_ID = "your-app-id";
@@ -27,7 +27,7 @@ export function AlgoliaSearch() {
         </kbd>
       </div>
       <div className="absolute inset-0 w-full opacity-0">
-        <DocSearch indexName={INDEX_NAME} apiKey={API_KEY} appId={APP_ID} />
+        {/* <DocSearch indexName={INDEX_NAME} apiKey={API_KEY} appId={APP_ID} /> */}
       </div>
     </div>
   );
