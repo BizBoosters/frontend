@@ -1,16 +1,36 @@
 // <<<<<<< HEAD
-import { BookingCard } from "../Components/Cards1";
-// import { SidebarWithLogo } from "../Components/SideBar";
+import React, {useState} from 'react'
 import { SidebarWithSearch } from '../Components/SideBar'
 import { CardThree } from '../Components/Cards'
-import { FooterFour } from '../Components/Footer'
-import { FeatureTwo } from '../Components/Feature'
 // import { NavbarDefault } from '../Components/Navbar'
-import Search from '../Components/Search'
-
+import Navbar from "../Components/Navbar";
+import Statscard from "../Components/Statscard";
+import RiseIcon from "../assets/Rise.svg";
+import FallIcon from "../assets/Fall.svg";
+import bgImage1 from '../assets/bgImage1.svg';
+import bgImage2 from '../assets/bgImage2.svg';
+import bgImage3 from '../assets/bgImage3.svg';
+import bgImage4 from '../assets/bgImage4.svg';
+import NotificationPanel from "../Components/NotificationPanel";
+import ChatbaseChatbot from "../Components/Chatbot1";
 const Blogs = () => {
-  return ( 
-  <div className="flex flex-row" >
+  const [showNotifications, setShowNotification] = useState(true); 
+  const toggleNotifications = () => setShowNotification(!showNotifications);
+
+  return (
+    <div className="flex h-screen overflow-hidden bg-bgWhite">
+      {/* Sidebar */}
+      {/* Main Content */}
+      <main className="flex flex-col flex-grow">
+        {/* Navbar */}
+        <div className={`${showNotifications? "w-[948px]": "w-full"}`}>
+          <Navbar toggleNotifications={toggleNotifications} />
+        </div>
+        
+
+        {/* Scrollable content */}
+        <section className="overflow-y-auto p-6 mt-2">
+        <div className="flex flex-row" >
     <div>
     <SidebarWithSearch/>
     </div>
@@ -32,7 +52,18 @@ const Blogs = () => {
     </div>
     </div>
   </div> 
+        </section>
+      </main>
+
+      {/* Notifications Container */}
+      {showNotifications && (
+          <NotificationPanel />
+      )}
+
+      <ChatbaseChatbot/>
+      
+    </div>
   );
-}
- 
+};
+
 export default Blogs;
