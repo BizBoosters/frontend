@@ -44,6 +44,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./Pages/Landing";
 import Home from "./Pages/Home";
 import Blogs from "./Pages/Blogs";
 import Community from "./Pages/Community";
@@ -53,7 +54,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home/>}/>
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/community" element={<Community />} />
         <Route path="/raise-funds" element={<RaiseFunds />} />

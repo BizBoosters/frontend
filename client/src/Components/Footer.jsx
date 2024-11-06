@@ -1,10 +1,12 @@
 import React from 'react'
+import { IconButton } from '@material-tailwind/react';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export function FooterFour() {
   return (
     <section className="relative overflow-hidden py-10 bg-black">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div className="-m-6 flex flex-wrap">
+        <div className="-m-6 flex flex-wrap justify-between">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
               <div className="mb-4 inline-flex items-center">
@@ -24,16 +26,23 @@ export function FooterFour() {
                 <span className="ml-4 text-lg font-bold text-white">DevUI</span>
               </div>
               <div>
-                <p className="mb-4  text-base font-medium text-gray-600">The Tailwind CSS Component library</p>
+                <p className="mb-4  text-base font-logowala font-medium text-blue-500">Bizboost</p>
                 <p className="text-sm text-gray-600">
-                  &copy; Copyright 2022. All Rights Reserved by DevUI.
+                  &copy; Copyright 2022. All Rights Reserved by Bizboost.
                 </p>
               </div>
             </div>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
+          <div className='w-full p-6 md:w-1/2 lg:w-2/12 flex flex-col'>
+            <a href='https://github.com/sidharthd7' className='mt-auto'>
+              <IconButton className="rounded bg-[#333333] hover:shadow-[#333333]/20 focus:shadow-[#333333]/20 active:shadow-[#333333]/10">
+                <i className="fab fa-github text-lg" />
+              </IconButton>
+            </a>
+          </div>
+          {/* <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-100">
+              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-black-100">
                 Company
               </h3>
               <ul>
@@ -62,7 +71,7 @@ export function FooterFour() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-100">
+              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-black-100">
                 Support
               </h3>
               <ul>
@@ -91,7 +100,7 @@ export function FooterFour() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-3/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-100">
+              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-black-100">
                 Legals
               </h3>
               <ul>
@@ -112,7 +121,7 @@ export function FooterFour() {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
           
         </div>
       </div>

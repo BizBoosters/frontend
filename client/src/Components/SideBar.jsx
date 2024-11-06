@@ -43,8 +43,8 @@ export function SidebarWithSearch() {
         </div>
 
         <List className="font-primary">
-          <Link to="/" onClick={() => setActiveItem(1)}>
-            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100  ${activePath === "/" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+          <Link to="/home" onClick={() => setActiveItem(1)}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100  ${activePath === "/home" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <HomeOutlineIcon className="size-5" />
               {!collapsed && "Home"}
             </div>
