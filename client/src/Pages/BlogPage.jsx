@@ -40,38 +40,23 @@ useEffect(() => {
         <div className="flex flex-row" >
     <div>
     </div>
-    <div className="grid xl:gap-8 xl:ml-5 2xl:grid-cols-4 desktop:grid-cols-3 gap-6">
+    <div className="">
         {/* Cards for Statistics */}
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="flex-1">
-        <BackgroundBlogCard/>
-        </div>
         <PostCard post={data}/>
       </div>
   </div> 
+
+  <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
+  <div className="">
+        <BackgroundBlogCard/>
+        </div>
+        <div className="">
+        <BackgroundBlogCard/>
+        </div>
+        <div className="">
+        <BackgroundBlogCard/>
+        </div>
+  </div>
         </section>
       </main>
 

@@ -9,7 +9,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
  
-export function BookingCard() {
+export function BookingCard1() {
   return (
     <Card className="w-full max-w-[26rem] bg-blue-gray-50 shadow-lg">
       <CardHeader floated={false} color="blue-gray">

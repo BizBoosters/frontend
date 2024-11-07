@@ -1,362 +1,44 @@
-import React from 'react'
-import { Carousel } from "@material-tailwind/react";
-import { ArrowUpRight } from 'lucide-react'
-
-export function CardThree() {
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+  Avatar,
+} from "@material-tailwind/react";
+ 
+export function BackgroundBlogCard() {
   return (
-    <div className="grid grid-cols-1 gap-6 mt-20 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-8">
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+    <Card
+      shadow={false}
+      className="relative  flex h-[32rem] w-[50rem] max-w-[18rem] items-end justify-center overflow-hidden text-center"
+    >
+      <CardHeader
+        floated={false}
+        shadow={false}
+        color="transparent"
+        className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url('https://images.unsplash.com/photo-1552960562-daf630e9278b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')] bg-cover bg-center"
+      >
+        <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+      </CardHeader>
+      <CardBody className="relative py-14 px-6 md:px-12">
+        <Typography
+          variant="h2"
+          color="white"
+          className="mb-6 font-medium leading-[1.5]"
         >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    <div className="w-auto rounded-md border">
-      <img
-        src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJsb2d8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      />
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          About Macbook &nbsp; <ArrowUpRight className="h-4 w-4" />
-        </h1>
-        <p className="mt-3 text-sm text-gray-600">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, debitis?
-        </p>
-        <div className="mt-4">
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Macbook
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Apple
-          </span>
-          <span className="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
-            #Laptop
-          </span>
-        </div>
-        <button
-          type="button"
-          className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-        >
-          Read
-        </button>
-      </div>
-    </div>
-    </div>
-  )
+          How we design and code open-source projects?
+        </Typography>
+        <Typography variant="h5" className="mb-4 text-gray-400">
+          Tania Andrew
+        </Typography>
+        <Avatar
+          size="xl"
+          variant="circular"
+          alt="tania andrew"
+          className="border-2 border-white"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+        />
+      </CardBody>
+    </Card>
+  );
 }

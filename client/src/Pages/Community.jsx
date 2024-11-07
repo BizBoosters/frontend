@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { SidebarWithSearch } from '../Components/SideBar'
 import Navbar from '../Components/Navbar'
 import NotificationPanel from '../Components/NotificationPanel'
-
+// import {ComCard} from '../Components/CommunityCard'
 const Community = () => {
   const [showNotifications, setShowNotification] = useState(true); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
@@ -26,7 +26,7 @@ const Community = () => {
       {/* Scrollable content */}
       <section className="overflow-y-auto p-6 mt-2">
         <div className="w-full">
-            <p>Community</p> 
+            {/* <Comcard/> */}
           </div>
         
       </section>
