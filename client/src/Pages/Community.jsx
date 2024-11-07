@@ -4,7 +4,7 @@ import Navbar from '../Components/Navbar'
 import NotificationPanel from '../Components/NotificationPanel'
 // import {ComCard} from '../Components/CommunityCard'
 const Community = () => {
-  const [showNotifications, setShowNotification] = useState(true); 
+  const [showNotifications, setShowNotification] = useState(false); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
 
   return (

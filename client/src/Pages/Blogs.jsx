@@ -20,7 +20,7 @@ useEffect(() => {
 }, []);
 
 
-  const [showNotifications, setShowNotification] = useState(true); 
+  const [showNotifications, setShowNotification] = useState(false); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
 
   return (

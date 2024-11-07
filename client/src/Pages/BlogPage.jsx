@@ -6,7 +6,8 @@ import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 import {BackgroundBlogCard} from '../Components/Cards'
-
+import RelatedPost from '../Components/RelatedPost';
+import Programs from '../Components/programs';
 const Blogs = () => {
 
   
@@ -20,7 +21,7 @@ useEffect(() => {
 }, []);
 
 
-  const [showNotifications, setShowNotification] = useState(true); 
+  const [showNotifications, setShowNotification] = useState(false); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
 
   return (
@@ -38,13 +39,14 @@ useEffect(() => {
         {/* Scrollable content */}
         <section className="overflow-y-auto w-full p-6 mt-2">
         <div className="flex flex-row" >
-    <div>
-    </div>
-    <div className="">
-        {/* Cards for Statistics */}
-        <PostCard post={data}/>
-      </div>
-  </div> 
+        <div className="">
+          <PostCard post={data}/>
+        </div>
+        <div className='flex flex-col' >
+          <RelatedPost/>
+          <Programs/>
+        </div>
+      </div> 
 
   <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
   <div className="">

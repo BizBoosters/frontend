@@ -18,7 +18,7 @@ const NotificationPanel = () => {
             <li className="flex items-center justify-between">
               <div className="text-gray-600 text-sm">Bizboost reached 1000 users.</div>
               <div className="text-gray-500 text-xs">2 days ago</div>
-            </li>
+            </li> 
             <li className="flex items-center justify-between">
               <div className="text-gray-600 text-sm">New update available.</div>
               <div className="text-gray-500 text-xs">5 days ago</div>
