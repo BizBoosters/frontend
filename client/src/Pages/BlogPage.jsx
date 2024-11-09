@@ -5,14 +5,16 @@ import Navbar from "../Components/Navbar";
 import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
-import {BackgroundBlogCard} from '../Components/Cards'
-// import FeaturedPostCard from '../Components/FeaturedCards';
+import {BackgroundBlogCard} from '../Components/Cards';
+// import FeaturedCard from '../Components/FeaturedCards';
 import RelatedPost from '../Components/RelatedPost';
 import Programs from '../Components/programs';
+import FeaturedCard from '../Components/FeaturedCard';
 const Blogs = () => {
 
   
 const [data, setData] = useState([]);
+// const [datay,setDatay] = useState([]);
 
 useEffect(() => {
   fetch("../../public/post.json")
@@ -20,6 +22,8 @@ useEffect(() => {
     .then((data) => setData(data))
     .catch((error) => console.error("Error fetching data:", error));
 }, []);
+
+
 
 
   const [showNotifications, setShowNotification] = useState(false); 
@@ -50,7 +54,7 @@ useEffect(() => {
       </div> 
 
   <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
-  <div className="">
+  {/* <div className="">
         <BackgroundBlogCard/>
         </div>
         <div className="">
@@ -58,7 +62,10 @@ useEffect(() => {
         </div>
         <div className="">
         <BackgroundBlogCard/>
-        </div>
+        </div> */}
+        <FeaturedCard post={data}/>
+        <FeaturedCard post={data}/>
+        <FeaturedCard post={data}/>
 
   </div>
         </section>
