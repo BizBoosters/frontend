@@ -76,6 +76,7 @@ import Home from "./Pages/Home";
 import Blogs from "./Pages/Blogs";
 import Community from "./Pages/Community";
 import RaiseFunds from "./Pages/RaiseFunds";
+import Profile from "./Pages/Profile";
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/community" element={<Community />} />
         <Route path="/raise-funds" element={<RaiseFunds />} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
     </Router>
   );

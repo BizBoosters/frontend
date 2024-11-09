@@ -14,7 +14,7 @@ import bgImage4 from '../assets/bgImage4.svg';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 const Blogs = () => {
-  const [showNotifications, setShowNotification] = useState(true); 
+  const [showNotifications, setShowNotification] = useState(false); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
 
   return (

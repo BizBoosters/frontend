@@ -19,7 +19,7 @@ import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 
 const Home = () => {
-  const [showNotifications, setShowNotification] = useState(true); 
+  const [showNotifications, setShowNotification] = useState(false); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
 
   return (

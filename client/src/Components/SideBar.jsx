@@ -6,6 +6,7 @@ import {
   UserGroupIcon,
   BanknotesIcon,
   ChatBubbleOvalLeftIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 import SidebarIcon from '../assets/newSide.svg';
 import SidebarIconClosed from '../assets/newSideclosed.svg';
@@ -65,6 +66,12 @@ export function SidebarWithSearch() {
             <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/raise-funds" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <BanknotesIcon className="size-5" />
               {!collapsed && "Raise Funds"}
+            </div>
+          </Link>
+          <Link to="/profile" onClick={() => setActiveItem(5)}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/profile" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+              <UserIcon className="size-5" />
+              {!collapsed && "Profile"}
             </div>
           </Link>
         </List>
