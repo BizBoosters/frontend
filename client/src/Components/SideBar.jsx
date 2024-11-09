@@ -26,8 +26,8 @@ export function SidebarWithSearch() {
   // ];
 
   return (
-    <div className={`relative border-r-[1px] h-screen ${collapsed ? "w-16" : "w-64"} transition-width duration-300`}>
-      <div className={`h-full w-1/5 max-w-[20rem] p-4 pt-0 shadow-xl shadow-blue-gray-900/5 rounded-none ${collapsed ? "w-16" : "w-64"}`}>
+    <div className={`relative border-r-[1px] h-screen ${collapsed ? "w-20" : "w-64"} transition-width duration-300`}>
+      <div className={`h-full w-1/5 max-w-[20rem] p-4 pt-0 shadow-xl shadow-blue-gray-900/5 rounded-none ${collapsed ? "w-20" : "w-64"}`}>
 
         <div className="h-[81px] items-center flex">
           <button
@@ -40,6 +40,9 @@ export function SidebarWithSearch() {
               <img src={SidebarIcon} className="size-6" alt="Toggle Sidebar" />
             )}
           </button>
+          {/* <div className="size-5"> */}
+              {!collapsed && <p className='font-medium text-2xl ml-4 text-blue-500 font-logowala'>BizBoost</p>}
+        {/* </div> */}
         </div>
 
         <List className="font-primary">

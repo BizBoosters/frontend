@@ -30,7 +30,7 @@ useEffect(() => {
       {/* Main Content */}
       <main className="flex flex-col flex-grow">
         {/* Navbar */}
-        <div className={`${showNotifications? "w-[948px]": "w-full"}`}>
+        <div className={`${showNotifications? "w-[1048px]": "w-full"}`}>
           <Navbar toggleNotifications={toggleNotifications} />
         </div>
         
@@ -40,36 +40,36 @@ useEffect(() => {
         <div className="flex flex-row" >
     <div>
     </div>
-    <div className="grid xl:gap-8 xl:ml-5 2xl:grid-cols-4 desktop:grid-cols-3 gap-6">
+    <div className="grid grid-cols-4 gap-12 ml-10" >
         {/* Cards for Statistics */}
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className="">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <div className="flex-1">
+        <div className=" ">
         <BackgroundBlogCard/>
         </div>
-        <PostCard post={data}/>
+        {/* <PostCard post={data}/> */}
       </div>
   </div> 
         </section>

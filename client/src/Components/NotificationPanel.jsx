@@ -2,7 +2,7 @@ import React from 'react'
 
 const NotificationPanel = () => {
   return (
-    <div className="max-w-96  w-full bg-white border-l-[1px] top-0 right-0 h-screen p-6 ">
+    <div className="max-w-96 absolute shadow-2xl w-full bg-white border-l-[1px] top-0 right-0 h-screen p-6 ">
           {/* Notifications */}
           <h3 className="text-gray-700 text-sm font-medium">Notifications</h3>
           <ul className="mt-4 space-y-4">
