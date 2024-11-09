@@ -67,6 +67,12 @@ export function SidebarWithSearch() {
               {!collapsed && "Raise Funds"}
             </div>
           </Link>
+          <Link to="/blogpage" onClick={() => setActiveItem(4)}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/blogpage" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+              <BanknotesIcon className="size-5" />
+              {!collapsed && "Blog Page"}
+            </div>
+          </Link>
         </List>
       </div>
     </div>
