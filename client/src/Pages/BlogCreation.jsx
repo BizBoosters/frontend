@@ -5,11 +5,8 @@ import Navbar from "../Components/Navbar";
 import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
-import {BackgroundBlogCard} from '../Components/Cards'
-// import FeaturedPostCard from '../Components/FeaturedCards';
-import RelatedPost from '../Components/RelatedPost';
-import Programs from '../Components/programs';
-const Blogs = () => {
+import CommentsForm from '../Components/Comment';
+const BlogCreation = () => {
 
   
 const [data, setData] = useState([]);
@@ -39,28 +36,9 @@ useEffect(() => {
 
         {/* Scrollable content */}
         <section className="overflow-y-auto w-full p-6 mt-2">
-        <div className="flex flex-row" >
-        <div className="">
-          <PostCard post={data}/>
-        </div>
-        <div className='flex flex-col' >
-          <RelatedPost/>
-          <Programs/>
-        </div>
-      </div> 
+        
+        <CommentsForm/>
 
-  <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
-  <div className="">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="">
-        <BackgroundBlogCard/>
-        </div>
-
-  </div>
         </section>
       </main>
 
@@ -75,4 +53,4 @@ useEffect(() => {
   );
 };
 
-export default Blogs;
+export default BlogCreation;
