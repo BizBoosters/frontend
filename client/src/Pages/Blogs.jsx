@@ -6,6 +6,7 @@ import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 import {BackgroundBlogCard} from '../Components/Cards'
+import FeaturedCard from '../Components/FeaturedCard';
 
 const Blogs = () => {
 
@@ -13,7 +14,7 @@ const Blogs = () => {
 const [data, setData] = useState([]);
 
 useEffect(() => {
-  fetch("../../public/post.json")
+  fetch("../../public/related.json")
     .then((response) => response.json())
     .then((data) => setData(data))
     .catch((error) => console.error("Error fetching data:", error));
@@ -37,41 +38,11 @@ useEffect(() => {
 
         {/* Scrollable content */}
         <section className="overflow-y-auto w-full p-6 mt-2">
-        <div className="flex flex-row" >
-    <div>
-    </div>
-    <div className="grid grid-cols-4 gap-12 ml-10" >
-        {/* Cards for Statistics */}
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        {/* <PostCard post={data}/> */}
-      </div>
-  </div> 
+        <div className='grid grid-cols-3 gap-9'>
+          {data.map((post, index) => (
+            <FeaturedCard key={index} post={post} />
+          ))}
+          </div>
         </section>
       </main>
 

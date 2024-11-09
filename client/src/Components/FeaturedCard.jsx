@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 // const [post,setPost] = useState(true);
 
 const FeaturedCard = ({ post }) => (
-  <div className="bg-white shadow-lg w-1/3 max-w-[60rem] h-full rounded-lg p-0 lg:p-8 pb-12 mb-8">
+  <div className="bg-white shadow-lg w-full col-span-1 max-w-[60rem] h-full rounded-lg p-0 lg:p-8 pb-12 mb-8">
         <div className="relative h-72">
+            
             <div className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-72" style={{ backgroundImage: `url('${post.image}')` }} />
             <div className="absolute rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-72" />
             <div className="flex flex-col rounded-lg p-4 items-center justify-center absolute w-full h-full">

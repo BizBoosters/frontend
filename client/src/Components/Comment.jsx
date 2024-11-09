@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RelatedPost from './RelatedPost';
 import Programs from './programs';
+import FeaturedCard from './FeaturedCard';
 // import { submitComment } from '../services';
 
 const CommentsForm = ({ slug }) => {
@@ -33,6 +34,16 @@ const CommentsForm = ({ slug }) => {
       }));
     }
   };
+
+  const [data1, setData1] = useState([]);
+
+useEffect(() => {
+  fetch("../../public/related.json")
+    .then((response) => response.json())
+    .then((data1) => setData1(data1))
+    .catch((error) => console.error("Error fetching data:", error));
+}, []);
+
 
   const handlePostSubmission = () => {
     setError(false);
@@ -78,6 +89,7 @@ const CommentsForm = ({ slug }) => {
 
   return (
     <div className='flex flex-row'>
+    <div className='flex flex-col'>
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8 h-fit">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">Create Your Own Blog</h3>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
@@ -105,6 +117,12 @@ const CommentsForm = ({ slug }) => {
             {showSuccessMessage && <span className="text-xl float-right font-semibold mt-3 text-green-500">Blogs submitted for review</span>}
         </div>
       </div>
+    </div>
+    <div className='grid grid-cols-2 gap-9'>
+          {data1.slice(0,2).map((post, index) => (
+            <FeaturedCard key={index} post={post} />
+          ))}
+    </div>
     </div>
     
         <div className='flex flex-col ' >

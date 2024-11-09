@@ -6,6 +6,7 @@ import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 import CommentsForm from '../Components/Comment';
+import FeaturedCard from '../Components/FeaturedCard';
 const BlogCreation = () => {
 
   
@@ -17,6 +18,8 @@ useEffect(() => {
     .then((data) => setData(data))
     .catch((error) => console.error("Error fetching data:", error));
 }, []);
+
+
 
 
   const [showNotifications, setShowNotification] = useState(false); 
@@ -38,6 +41,7 @@ useEffect(() => {
         <section className="overflow-y-auto w-full p-6 mt-2">
         
         <CommentsForm/>
+
 
         </section>
       </main>
