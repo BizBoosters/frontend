@@ -6,7 +6,8 @@ import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 import {BackgroundBlogCard} from '../Components/Cards'
-
+import RelatedPost from '../Components/RelatedPost';
+import Programs from '../Components/programs';
 const Blogs = () => {
 
   
@@ -38,40 +39,26 @@ useEffect(() => {
         {/* Scrollable content */}
         <section className="overflow-y-auto w-full p-6 mt-2">
         <div className="flex flex-row" >
-    <div>
-    </div>
-    <div className="grid grid-cols-4 gap-12 ml-10" >
-        {/* Cards for Statistics */}
-        <div className=" ">
-        <BackgroundBlogCard/>
+        <div className="">
+          <PostCard post={data}/>
         </div>
-        <div className=" ">
+        <div className='flex flex-col' >
+          <RelatedPost/>
+          <Programs/>
+        </div>
+      </div> 
+
+  <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
+  <div className="">
         <BackgroundBlogCard/>
         </div>
         <div className="">
         <BackgroundBlogCard/>
         </div>
-        <div className=" ">
+        <div className="">
         <BackgroundBlogCard/>
         </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        <div className=" ">
-        <BackgroundBlogCard/>
-        </div>
-        {/* <PostCard post={data}/> */}
-      </div>
-  </div> 
+  </div>
         </section>
       </main>
 

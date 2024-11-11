@@ -10,12 +10,8 @@ import {
 
 const Navbar = ({ toggleNotifications }) => {
   return (
-    <div className='main-container flex flex-row h-fit justify-between px-7 py-5 align-middle border-b-[1px] bg-bgWhite'>
+    <div className='main-container flex flex-row h-fit w-full justify-between px-7 py-5 align-middle border-b-[1px] bg-bgWhite'>
       <div className='flex gap-4 items-center'>
-        <div className='flex gap-2 place-content-center'>
-          {/* <img src={Sidee} alt="Logo" className='h-5 w-5' /> */}
-          <p className='font-medium text-2xl text-blue-500 font-logowala'>BizBoost</p>
-        </div>
         <AlgoliaSearch/>
       </div>
       

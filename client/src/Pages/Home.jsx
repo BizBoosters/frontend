@@ -33,7 +33,7 @@ const Home = () => {
       {/* Main Content */}
       <main className="flex flex-col flex-grow">
         {/* Navbar */}
-        <div className={`${showNotifications? "w-[948px]": "w-full"}`}>
+        <div className={`${showNotifications? "w-[1048px]": "w-full"}`}>
           <Navbar toggleNotifications={toggleNotifications} />
         </div>
         

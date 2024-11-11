@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { SidebarWithSearch } from '../Components/SideBar'
 import Navbar from '../Components/Navbar'
 import NotificationPanel from '../Components/NotificationPanel'
-
+import { Comcard } from '../Components/CommunityCard'
 const Community = () => {
   const [showNotifications, setShowNotification] = useState(false); 
   const toggleNotifications = () => setShowNotification(!showNotifications);
@@ -18,7 +18,7 @@ const Community = () => {
     {/* Main Content */}
     <main className="flex flex-col flex-grow">
       {/* Navbar */}
-      <div className={`${showNotifications? "w-[948px]": "w-full"}`}>
+      <div className={`${showNotifications? "w-[1048px]": "w-full"}`}>
         <Navbar toggleNotifications={toggleNotifications} />
       </div>
       
@@ -26,7 +26,7 @@ const Community = () => {
       {/* Scrollable content */}
       <section className="overflow-y-auto p-6 mt-2">
         <div className="w-full">
-            <p>Community</p> 
+            
           </div>
         
       </section>

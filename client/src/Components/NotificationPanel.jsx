@@ -2,7 +2,7 @@ import React from 'react'
 
 const NotificationPanel = () => {
   return (
-    <div className="w-full bg-white border-l-[1px] top-0 right-0 h-screen p-6 ">
+    <div className="max-w-96 absolute shadow-2xl w-full bg-white border-l-[1px] top-0 right-0 h-screen p-6 ">
           {/* Notifications */}
           <h3 className="text-gray-700 text-sm font-medium">Notifications</h3>
           <ul className="mt-4 space-y-4">
@@ -18,7 +18,7 @@ const NotificationPanel = () => {
             <li className="flex items-center justify-between">
               <div className="text-gray-600 text-sm">Bizboost reached 1000 users.</div>
               <div className="text-gray-500 text-xs">2 days ago</div>
-            </li>
+            </li> 
             <li className="flex items-center justify-between">
               <div className="text-gray-600 text-sm">New update available.</div>
               <div className="text-gray-500 text-xs">5 days ago</div>
