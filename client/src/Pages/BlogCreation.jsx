@@ -5,16 +5,12 @@ import Navbar from "../Components/Navbar";
 import PostCard from '../Components/PostBlog';
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
-import {BackgroundBlogCard} from '../Components/Cards';
-// import FeaturedCard from '../Components/FeaturedCards';
-import RelatedPost from '../Components/RelatedPost';
-import Programs from '../Components/programs';
+import CommentsForm from '../Components/Comment';
 import FeaturedCard from '../Components/FeaturedCard';
-const Blogs = () => {
+const BlogCreation = () => {
 
   
 const [data, setData] = useState([]);
-// const [datay,setDatay] = useState([]);
 
 useEffect(() => {
   fetch("../../public/post.json")
@@ -43,31 +39,10 @@ useEffect(() => {
 
         {/* Scrollable content */}
         <section className="overflow-y-auto w-full p-6 mt-2">
-        <div className="flex flex-row" >
-        <div className="">
-          <PostCard post={data}/>
-        </div>
-        <div className='flex flex-col' >
-          <RelatedPost/>
-          <Programs/>
-        </div>
-      </div> 
+        
+        <CommentsForm/>
 
-  <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
-  {/* <div className="">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="">
-        <BackgroundBlogCard/>
-        </div>
-        <div className="">
-        <BackgroundBlogCard/>
-        </div> */}
-        <FeaturedCard post={data}/>
-        <FeaturedCard post={data}/>
-        <FeaturedCard post={data}/>
 
-  </div>
         </section>
       </main>
 
@@ -82,4 +57,4 @@ useEffect(() => {
   );
 };
 
-export default Blogs;
+export default BlogCreation;
