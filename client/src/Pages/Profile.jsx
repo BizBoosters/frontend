@@ -21,14 +21,20 @@ const Overview = () =>{
 };
 const People = () => {
   return (
-    <div className="flex flex-col w-2/5">
-      <h2 className="font-semibold text-lg">People at Company Name</h2>
-      <div className="flex gap-4 mt-4">
-        <div className="flex flex-col p-4 border rounded-lg">
-          <img src="https://via.placeholder.com/150" alt="Founder Image" className="w-full rounded-full" />
-          <h3 className="font-bold mt-2">Drew Uher</h3>
-          <p className="text-sm text-gray-600">CEO • 13 years</p>
-          <p className="mt-2 text-sm">Founded @CompanyName after buying first home. Worked at Pubmatic & Morgan Stanley. Studied at Stanford Graduate School of Business.</p>
+    <div className="people">
+      <h2 className="text-2xl font-semibold mb-4">People at Homelight</h2>
+      <div className="flex flex-col font-medium gap-4 mt-4">
+        <h3>Founder</h3>
+        <div className="flex flex-col p-4 border rounded-lg w-3/6 gap-4">
+          <div className='flex justify-between items-center'>
+            <div className='flex flex-col'>
+              <h3 className="font-bold mt-2">Drew Uher</h3>
+              <p className="text-sm text-gray-600">CEO • 13 years</p>
+              <p className='text-xs text-gray-400'>San Francisco</p>
+            </div>
+            <img src="https://i.pravatar.cc/100?u=user" alt="Founder Image" className="size-12 rounded-full" />
+          </div>
+          <p className="mt-2 text-sm text-black-500">Founded <span className='text-blue-500'>@Homelight</span> after buying first home. <br/> Worked at Pubmatic & Morgan Stanley. <br/> Studied at Stanford Graduate School of Business.</p>
         </div>
         {/* Add more people as needed */}
       </div>
@@ -39,9 +45,9 @@ const CultureBenefits = () => {
   return (
     <div className="culture-benefits">
       <h2 className="text-2xl font-semibold mb-4">Perks and benefits</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="flex items-start space-x-4">
-          <FontAwesomeIcon icon={faBriefcaseMedical} className="text-blue-600 text-2xl" />
+      <div className="grid grid-cols-2 gap-6">
+        <div className="flex items-start space-x-4 p-2">
+          <FontAwesomeIcon icon={faBriefcaseMedical} className="text-blue-500 size-7 p-1" />
           <div>
             <h3 className="font-semibold">Healthcare benefits</h3>
             <p className="text-gray-600">
@@ -49,8 +55,8 @@ const CultureBenefits = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-start space-x-4">
-          <FontAwesomeIcon icon={faBaby} className="text-blue-600 text-2xl" />
+        <div className="flex items-start space-x-4 p-2">
+          <FontAwesomeIcon icon={faBaby} className="text-blue-500 size-7 p-1" />
           <div>
             <h3 className="font-semibold">Parental leave</h3>
             <p className="text-gray-600">
@@ -58,8 +64,8 @@ const CultureBenefits = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-start space-x-4">
-          <FontAwesomeIcon icon={faCoffee} className="text-blue-600 text-2xl" />
+        <div className="flex items-start space-x-4 p-2">
+          <FontAwesomeIcon icon={faCoffee} className="text-blue-500 size-7 p-1" />
           <div>
             <h3 className="font-semibold">Fully stocked kitchen</h3>
             <p className="text-gray-600">
@@ -67,8 +73,8 @@ const CultureBenefits = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-start space-x-4">
-          <FontAwesomeIcon icon={faDumbbell} className="text-blue-600 text-2xl" />
+        <div className="flex items-start space-x-4 p-2">
+          <FontAwesomeIcon icon={faDumbbell} className="text-blue-500 size-7 p-1" />
           <div>
             <h3 className="font-semibold">Wellness benefits</h3>
             <p className="text-gray-600">
@@ -76,8 +82,8 @@ const CultureBenefits = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-start space-x-4">
-          <FontAwesomeIcon icon={faMapMarkerAlt} className="text-blue-600 text-2xl" />
+        <div className="flex items-start space-x-4 p-2">
+          <FontAwesomeIcon icon={faMapMarkerAlt} className="text-blue-500 size-7 p-1" />
           <div>
             <h3 className="font-semibold">Ideally located</h3>
             <p className="text-gray-600">
@@ -85,8 +91,8 @@ const CultureBenefits = () => {
             </p>
           </div>
         </div>
-        <div className="flex items-start space-x-4">
-          <FontAwesomeIcon icon={faUsers} className="text-blue-600 text-2xl" />
+        <div className="flex items-start space-x-4 p-2">
+          <FontAwesomeIcon icon={faUsers} className="text-blue-500 size-7 p-1" />
           <div>
             <h3 className="font-semibold">Company events</h3>
             <p className="text-gray-600">
@@ -98,8 +104,126 @@ const CultureBenefits = () => {
     </div>
   );
 };
-const Funding = () => <div>Funding Content</div>;
-const Stats = () => <div>Stats Content</div>;
+const Funding = () => {
+  return(
+    <div className="Funding">
+      <h2 className="text-2xl font-semibold mb-4">HomeLight Funding</h2>
+      
+      {/* Summary Section */}
+      <div className="flex justify-between items-center mb-8 bg-blue-100/30 border-[1px] rounded-lg h-28">
+        <div className="flex flex-col text-left p-6 w-full h-full justify-center gap-2">
+          <h3 className="text-black-200 text-xs font-bold uppercase">Valuation</h3>
+          <p className="text-xl font-bold text-black-500">$1.7B</p>
+        </div>
+        <div className="flex flex-col text-left p-6 w-full h-full justify-center gap-2 relative before:content-[''] before:absolute before:left-0 before:top-[20%] before:bottom-[20%] before:w-[1px] before:bg-gray-300">
+          <h3 className="text-black-200 text-xs font-bold uppercase">Funded Over</h3>
+          <p className="text-xl font-bold text-black-500">11 rounds</p>
+        </div>
+        <div className="flex flex-col text-left p-6 w-full h-full justify-center gap-2 relative before:content-[''] before:absolute before:left-0 before:top-[20%] before:bottom-[20%] before:w-[1px] before:bg-gray-300">
+          <h3 className="text-black-200 text-xs font-bold uppercase">Incubators</h3>
+          <img src={bgImage1} alt="Incubator Icon" className="w-10 h-10 object-cover rounded-lg border-gray-100" />
+        </div>
+      </div>
+
+      {/* Funding Rounds Section */}
+      <h3 className="text-lg font-semibold mb-4">Funding Rounds</h3>
+      
+      <div className='flex flex-col gap-4'>
+        {/* Funding Round - Series D */}
+        <div className="flex items-start mb-4">
+          <span className="bg-green-500 text-white rounded-lg border-gray-100 w-8 h-8 flex items-center justify-center font-bold mr-4">D</span>
+          <div>
+            <p className="text-xl font-semibold">$60,000,000</p>
+            <p className="text-gray-500">Series D Extension · Jun 2022 · $1.7B valuation</p>
+            <a href="#" className="text-blue-600 hover:underline text-sm">
+              Amid real estate tech industry layoffs, HomeLight raises $60M and acquires lending startup Accept.inc
+            </a>
+          </div>
+        </div>
+
+        {/* Funding Round - Debt */}
+        <div className="flex items-start mb-4">
+          <span className="bg-gray-400 text-white rounded-lg border-gray-100 w-8 h-8 flex items-center justify-center font-bold mr-4">-</span>
+          <div>
+            <p className="text-xl font-semibold">$55,000,000</p>
+            <p className="text-gray-500">Debt · Jun 2022</p>
+          </div>
+        </div>
+
+        {/* Funding Round - Series A */}
+        <div className="flex items-start mb-4">
+          <span className="bg-green-400 text-white rounded-lg border-gray-100 w-8 h-8 flex items-center justify-center font-bold mr-4">A</span>
+          <div>
+            <p className="text-xl font-semibold">$11,000,000</p>
+            <p className="text-gray-500">Series A · Apr 2016</p>
+            <a href="#" className="text-blue-600 hover:underline text-sm">Read press</a>
+          </div>
+        </div>
+
+        {/* Funding Round - Seed */}
+        <div className="flex items-start mb-4">
+          <span className="bg-yellow-500 text-white rounded-lg border-gray-100 w-8 h-8 flex items-center justify-center font-bold mr-4">S</span>
+          <div>
+            <p className="text-xl font-semibold">$3,000,000</p>
+            <p className="text-gray-500">Seed · Feb 2015</p>
+            <a href="#" className="text-blue-600 hover:underline text-sm">Read press</a>
+          </div>
+        </div>
+        
+        {/* Funding Round - Seed */}
+        <div className="flex items-start">
+          <span className="bg-yellow-500 text-white rounded-lg border-gray-100 w-8 h-8 flex items-center justify-center font-bold mr-4">S</span>
+          <div>
+            <p className="text-xl font-semibold">$1,500,000</p>
+            <p className="text-gray-500">Seed · Feb 2012</p>
+          </div>
+        </div>
+      </div>
+      {/* Investors Section */}
+      <h3 className="text-lg font-semibold mt-8 mb-4">Investors of HomeLight</h3>
+      <div className="flex space-x-4">
+        <div className='flex flex-col gap-6 w-1/3 p-4 rounded-md border border-gray-200 border-b-4'>
+          <div className="flex justify-between">
+            <div className='flex flex-col'>
+              <p className='text-black-500 font-medium whitespace-nowrap overflow-hidden text-ellipsis' style={{ maxWidth: '150px' }}>Group 11</p>
+              <p className='text-gray-500 text-sm whitespace-nowrap overflow-hidden text-ellipsis' style={{ maxWidth: '150px' }}>VC Firm · Beverly Hills</p>
+            </div>
+            <div className="bg-orange-500 text-white w-10 h-10 rounded-lg border border-gray-100 flex items-center justify-center font-bold">Gr</div>
+          </div>
+          <p className='text-sm text-gray-500'>Group 11 is an early stage, fin-tech focused venture capital firm</p>
+        </div>
+        <div className='flex flex-col gap-6 w-1/3 p-4 rounded-md border border-gray-200 border-b-4'>
+          <div className="flex justify-between">
+            <div className='flex flex-col'>
+              <p className='text-black-500 font-medium whitespace-nowrap overflow-hidden text-ellipsis' style={{ maxWidth: '150px' }}>Zeev Ventures</p>
+              <p className='text-gray-500 text-sm whitespace-nowrap overflow-hidden text-ellipsis' style={{ maxWidth: '150px' }}>VC Firm · United States of America</p>
+            </div>
+            <div className="bg-gray-400 text-white w-10 h-10 rounded-lg border border-gray-100 flex items-center justify-center font-bold">Zv</div>
+          </div>
+          <p className='text-sm text-gray-500'>Zeev Ventures is an early stage venture fund, managed by Oren Zeev</p>
+        </div>
+        <div className='flex flex-col gap-6 w-1/3 p-4 rounded-md border border-gray-200 border-b-4'>
+          <div className="flex justify-between">
+            <div className='flex flex-col'>
+              <p className='text-black-500 font-medium whitespace-nowrap overflow-hidden text-ellipsis' style={{ maxWidth: '150px' }}>ZenStone Ventures</p>
+              <p className='text-gray-500 text-sm whitespace-nowrap overflow-hidden text-ellipsis' style={{ maxWidth: '150px' }}>VC Firm · San Francisco</p>
+            </div>
+            <div className="bg-red-500 text-white w-10 h-10 rounded-lg border border-gray-100 flex items-center justify-center font-bold">Zs</div>
+          </div>
+          <p className='text-sm text-gray-500'>Investing in post seed and early venture stage companies driven by tech & data</p>
+        </div>
+        
+      </div>
+    </div>
+  );
+};
+const Stats = () => {
+  return (
+    <div className='stats'>
+      <h2 className="text-2xl font-semibold mb-4">Statistics</h2>
+    </div>
+  );
+};
 
 const Profile = () => {
     const [showNotifications, setShowNotification] = useState(false); 
@@ -205,7 +329,7 @@ const Profile = () => {
 
               <div className='flex gap-8 mt-12 w-10/12 justify-between'>
                 {/* Sub-navbar */}
-                <div className='flex flex-col'>
+                <div className='flex flex-col w-full'>
                   <div className="flex gap-6 border-b-2 border-gray-200 pb-2 relative">
                     {["Overview", "People", "Culture & Benefits", "Funding", "Stats"].map((tab) => (
                       <button

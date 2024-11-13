@@ -34,7 +34,7 @@ export function FooterFour() {
             </div>
           </div>
           <div className='w-full p-6 md:w-1/2 lg:w-2/12 flex flex-col'>
-            <a href='https://github.com/sidharthd7' className='mt-auto'>
+            <a href='https://github.com/BizBoosters' className='mt-auto'>
               <IconButton className="rounded bg-[#333333] hover:shadow-[#333333]/20 focus:shadow-[#333333]/20 active:shadow-[#333333]/10">
                 <i className="fab fa-github text-lg" />
               </IconButton>
