@@ -14,13 +14,20 @@ const Blogs = () => {
 
   
 const [data, setData] = useState([]);
-// const [datay,setDatay] = useState([]);
+const [datay,setDatay] = useState([]);
 
 useEffect(() => {
   fetch("../../public/post.json")
-    .then((response) => response.json())
-    .then((data) => setData(data))
-    .catch((error) => console.error("Error fetching data:", error));
+      .then((response) => response.json())
+      .then((data) => setData(data))
+      .catch((error) => console.error("Error fetching data:", error));
+}, []);
+
+useEffect(() => {
+  fetch("http://localhost:3000/getblogs")
+      .then((response) => response.json())
+      .then((datay) => setDatay(datay)) // Use setDatay here
+      .catch((error) => console.error("Error fetching data:", error));
 }, []);
 
 
@@ -63,9 +70,10 @@ useEffect(() => {
         <div className="">
         <BackgroundBlogCard/>
         </div> */}
-        <FeaturedCard post={data}/>
-        <FeaturedCard post={data}/>
-        <FeaturedCard post={data}/>
+        {datay.slice(0, 3).map((post, index) => (
+    <FeaturedCard key={index} post={post} />
+))}
+
 
   </div>
         </section>

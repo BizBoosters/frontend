@@ -14,7 +14,7 @@ const Blogs = () => {
 const [data, setData] = useState([]);
 
 useEffect(() => {
-  fetch("../../public/related.json")
+  fetch("http://localhost:3000/getblogs")
     .then((response) => response.json())
     .then((data) => setData(data))
     .catch((error) => console.error("Error fetching data:", error));

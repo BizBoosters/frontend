@@ -9,11 +9,11 @@ import CommentsForm from '../Components/Comment';
 import FeaturedCard from '../Components/FeaturedCard';
 const BlogCreation = () => {
 
-  
+  //crrate
 const [data, setData] = useState([]);
 
 useEffect(() => {
-  fetch("../../public/post.json")
+  fetch("http://localhost:3000/getblogs/")
     .then((response) => response.json())
     .then((data) => setData(data))
     .catch((error) => console.error("Error fetching data:", error));
