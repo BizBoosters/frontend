@@ -7,6 +7,7 @@ import {
   BanknotesIcon,
   ChatBubbleOvalLeftIcon,
   UserIcon,
+  DocumentIcon,
 } from "@heroicons/react/24/outline";
 import SidebarIcon from '../assets/newSide.svg';
 import SidebarIconClosed from '../assets/newSideclosed.svg';
@@ -81,6 +82,12 @@ export function SidebarWithSearch() {
             <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/blogcreation" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
               <BanknotesIcon className="size-5" />
               {!collapsed && "Blog Creation"}
+            </div>
+          </Link>
+          <Link to="/applicationform" onClick={() => setActiveItem(6)}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/applicationform" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+              <DocumentIcon className="size-5" />
+              {!collapsed && "Application Form"}
             </div>
           </Link>
         </List>

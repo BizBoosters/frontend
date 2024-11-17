@@ -79,6 +79,7 @@ import RaiseFunds from "./Pages/RaiseFunds";
 import BlogPage from "./Pages/BlogPage";
 import Profile from "./Pages/Profile";
 import BlogCreation from "./Pages/BlogCreation";
+import ApplicationForm from "./Pages/ApplicationForm";
 
 function App() {
   return (
@@ -92,6 +93,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/blogpage" element={<BlogPage/>} />
         <Route path="/blogcreation" element={<BlogCreation/>} />
+        <Route path="/applicationform" element={<ApplicationForm/>}/>
       </Routes>
     </Router>
   );
