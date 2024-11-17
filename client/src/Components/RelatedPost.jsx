@@ -7,7 +7,7 @@ const RelatedPost = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-    fetch("../../public/related.json")
+    fetch("http://localhost:3000/getblogs")
         .then((response) => response.json())
         .then((data) => setData(data))
         .catch((error) => console.error("Error fetching data:", error));
@@ -25,12 +25,12 @@ const RelatedPost = () => {
               height="60px"
               width="60px"
               className="align-middle rounded-full border aspect-square"
-              src={post.image}
+              src={post.file2 ? `http://localhost:3000${post.file1}` : ''}
             />
           </div>
           <div className="flex-grow ml-4">
             <h1 className="text-gray-500 font-xs">{post.authorname}</h1>
-            <p className="text-md" key={index}>{post.title}</p>
+            <p className="text-md" key={index}>{post.Title}</p>
           </div>
         </div>
       ))}
