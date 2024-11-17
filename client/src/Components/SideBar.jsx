@@ -90,6 +90,12 @@ export function SidebarWithSearch() {
               {!collapsed && "Application Form"}
             </div>
           </Link>
+          <Link to="/messaging" onClick={() => setActiveItem(7)}>
+            <div className={`menu-item flex items-center gap-2 p-2 h-10 rounded-lg hover:bg-blue-100 ${activePath === "/messaging" ? "bg-blue-500 text-white" : "bg-default"}  ${collapsed === true ? "w-fit" : ""}`}>
+              <DocumentIcon className="size-5" />
+              {!collapsed && "Messaging"}
+            </div>
+          </Link>
         </List>
       </div>
     </div>

@@ -80,6 +80,7 @@ import BlogPage from "./Pages/BlogPage";
 import Profile from "./Pages/Profile";
 import BlogCreation from "./Pages/BlogCreation";
 import ApplicationForm from "./Pages/ApplicationForm";
+import Messaging from "./Pages/Messaging";
 
 function App() {
   return (
@@ -94,6 +95,7 @@ function App() {
         <Route path="/blogpage" element={<BlogPage/>} />
         <Route path="/blogcreation" element={<BlogCreation/>} />
         <Route path="/applicationform" element={<ApplicationForm/>}/>
+        <Route path="/messaging" element={<Messaging/>}/>
       </Routes>
     </Router>
   );
