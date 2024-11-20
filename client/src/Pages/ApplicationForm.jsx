@@ -200,10 +200,145 @@ const ApplicationForm = () => {
                                                 type="number"
                                                 id="sales"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder="Enter total sales"
+                                                placeholder="Enter sales amount"
                                                 value={pnlInputs.sales}
                                                 onChange={(e) =>
                                                     setPnLInputs({ ...pnlInputs, sales: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="cogs" className="block mb-2 text-sm font-medium">
+                                                COGS
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="cogs"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter Cost of Goods Sold (COGS)"
+                                                value={pnlInputs.cogs}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, cogs: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="operatingExpenses" className="block mb-2 text-sm font-medium">
+                                                Operating Expenses
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="operatingExpenses"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter operating expenses"
+                                                value={pnlInputs.operatingExpenses}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, operatingExpenses: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="depreciation" className="block mb-2 text-sm font-medium">
+                                                Depreciation
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="depreciation"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter depreciation amount"
+                                                value={pnlInputs.depreciation}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, depreciation: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="amortization" className="block mb-2 text-sm font-medium">
+                                                Amortization
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="amortization"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter amortization amount"
+                                                value={pnlInputs.amortization}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, amortization: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="interestExpense" className="block mb-2 text-sm font-medium">
+                                                Interest Expense
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="interestExpense"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter interest expense"
+                                                value={pnlInputs.interestExpense}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, interestExpense: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="interestIncome" className="block mb-2 text-sm font-medium">
+                                                Interest Income
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="interestIncome"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter interest income"
+                                                value={pnlInputs.interestIncome}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, interestIncome: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="otherIncome" className="block mb-2 text-sm font-medium">
+                                                Other Income
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="otherIncome"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter other income"
+                                                value={pnlInputs.otherIncome}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, otherIncome: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="otherExpenses" className="block mb-2 text-sm font-medium">
+                                                Other Expense
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="otherExpenses"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter other expenses"
+                                                value={pnlInputs.otherExpenses}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, otherExpenses: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="taxRate" className="block mb-2 text-sm font-medium">
+                                                Tax Rate
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="taxRate"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter tax rate percentage"
+                                                value={pnlInputs.taxRate}
+                                                onChange={(e) =>
+                                                    setPnLInputs({ ...pnlInputs, taxRate: e.target.value })
                                                 }
                                             />
                                         </div>
@@ -236,6 +371,132 @@ const ApplicationForm = () => {
                                                     setInvestmentInputs({
                                                         ...investmentInputs,
                                                         initialInvestment: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="exitTimePeriods" className="block mb-2 text-sm font-medium">
+                                                Exit Time Periods (in yrs)
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="exitTimePeriods"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter exit time period"
+                                                value={investmentInputs.exitTimePeriods}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        exitTimePeriods: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="exitMultiples" className="block mb-2 text-sm font-medium">
+                                                Exit Mulitples
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="exitMultiples"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter exit multiples"
+                                                value={investmentInputs.exitMultiples}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        exitMultiples: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="baseGrowthRate" className="block mb-2 text-sm font-medium">
+                                                Base Growth Rate
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="baseGrowthRate"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter base growth rate"
+                                                value={investmentInputs.baseGrowthRate}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        baseGrowthRate: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="inflationRate" className="block mb-2 text-sm font-medium">
+                                                Inflation Rate
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="inflationRate"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter inflation rate"
+                                                value={investmentInputs.inflationRate}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        inflationRate: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="volatility" className="block mb-2 text-sm font-medium">
+                                                Volatility
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="volatility"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter volatility"
+                                                value={investmentInputs.volatility}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        volatility: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="dividendYield" className="block mb-2 text-sm font-medium">
+                                                Dividend yield
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="dividendYield"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter dividend yield"
+                                                value={investmentInputs.dividendYield}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        dividendYield: e.target.value,
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="decayFactor" className="block mb-2 text-sm font-medium">
+                                                Decay Factor
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="decayFactor"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter decay factor"
+                                                value={investmentInputs.decayFactor}
+                                                onChange={(e) =>
+                                                    setInvestmentInputs({
+                                                        ...investmentInputs,
+                                                        decayFactor: e.target.value,
                                                     })
                                                 }
                                             />
@@ -365,6 +626,66 @@ const ApplicationForm = () => {
                                                 value={valuationInputs.revenue}
                                                 onChange={(e) =>
                                                     setValuationInputs({ ...valuationInputs, revenue: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="growthRate" className="block mb-2 text-sm font-medium">
+                                                Growth Rate
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="growthRate"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter growth rate"
+                                                value={valuationInputs.growthRate}
+                                                onChange={(e) =>
+                                                    setValuationInputs({ ...valuationInputs, growthRate: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="tam" className="block mb-2 text-sm font-medium">
+                                                TAM
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="tam"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter Total Addressable Market (TAM)"
+                                                value={valuationInputs.tam}
+                                                onChange={(e) =>
+                                                    setValuationInputs({ ...valuationInputs, tam: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="marketShare" className="block mb-2 text-sm font-medium">
+                                                Market Share
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="marketShare"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter market share percentage"
+                                                value={valuationInputs.marketShare}
+                                                onChange={(e) =>
+                                                    setValuationInputs({ ...valuationInputs, marketShare: e.target.value })
+                                                }
+                                            />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="industryMultiplier" className="block mb-2 text-sm font-medium">
+                                                Industry Multiplier
+                                            </label>
+                                            <input
+                                                type="number"
+                                                id="industryMultiplier"
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Enter industry multiplier"
+                                                value={valuationInputs.industryMultiplier}
+                                                onChange={(e) =>
+                                                    setValuationInputs({ ...valuationInputs, industryMultiplier: e.target.value })
                                                 }
                                             />
                                         </div>
