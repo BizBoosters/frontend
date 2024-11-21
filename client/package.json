@@ -28,7 +28,7 @@
     "react-fontawesome": "^1.7.1",
     "react-instantsearch-hooks-web": "^6.47.3",
     "react-multi-carousel": "^2.8.5",
-    "react-router-dom": "^6.26.1",
+    "react-router-dom": "^6.28.0",
     "web3": "^4.12.1"
   },
   "devDependencies": {

@@ -8,6 +8,7 @@ import ChatbaseChatbot from "../Components/Chatbot1";
 import {BackgroundBlogCard} from '../Components/Cards';
 // import FeaturedCard from '../Components/FeaturedCards';
 import RelatedPost from '../Components/RelatedPost';
+import { useParams } from 'react-router-dom';
 import Programs from '../Components/programs';
 import FeaturedCard from '../Components/FeaturedCard';
 const Blogs = () => {
@@ -16,15 +17,18 @@ const Blogs = () => {
 const [data, setData] = useState([]);
 const [datay,setDatay] = useState([]);
 
+
+const { id } = useParams();
+
 useEffect(() => {
-  fetch("../../public/post.json")
+  fetch(`http://localhost:3000/blogs/${id}`)
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching data:", error));
 }, []);
 
 useEffect(() => {
-  fetch("http://localhost:3000/getblogs")
+  fetch(`http://localhost:3000/getblogs/`)
       .then((response) => response.json())
       .then((datay) => setDatay(datay)) // Use setDatay here
       .catch((error) => console.error("Error fetching data:", error));
@@ -49,7 +53,7 @@ useEffect(() => {
         
 
         {/* Scrollable content */}
-        <section className="overflow-y-auto w-full p-6 mt-2">
+        <section className="overflow-y-auto w-full p-6 ml-3">
         <div className="flex flex-row" >
         <div className="">
           <PostCard post={data}/>
@@ -60,7 +64,7 @@ useEffect(() => {
         </div>
       </div> 
 
-  <div className='flex flex-row mt-10 px-4 gap-8 md:col-span-3'>
+  <div className='flex flex-row pl-8  gap-8 md:col-span-3'>
   {/* <div className="">
         <BackgroundBlogCard/>
         </div>
@@ -70,9 +74,9 @@ useEffect(() => {
         <div className="">
         <BackgroundBlogCard/>
         </div> */}
-        {datay.slice(0, 3).map((post, index) => (
+        {/* {datay.slice(0, 3).map((post, index) => (
     <FeaturedCard key={index} post={post} />
-))}
+))} */}
 
 
   </div>

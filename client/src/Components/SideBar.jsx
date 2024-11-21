@@ -28,7 +28,7 @@ export function SidebarWithSearch() {
   // ];
 
   return (
-    <div className={`relative border-r-[1px] h-screen ${collapsed ? "w-20" : "w-64"} transition-width duration-300`}>
+    <div className={`relative border-r-[1px] h-screen ${collapsed ? "w-20" : "w-64"} mr-2 transition-width duration-300`}>
       <div className={`h-full w-1/5 max-w-[20rem] p-4 pt-0 shadow-xl shadow-blue-gray-900/5 rounded-none ${collapsed ? "w-20" : "w-64"}`}>
 
         <div className="h-[81px] items-center flex">

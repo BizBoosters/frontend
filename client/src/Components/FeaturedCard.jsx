@@ -1,11 +1,13 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const FeaturedCard = ({ post }) => {
-  const backgroundImage = post.file1 ? `${post.file1}` : ''; // Direct URL to the image
+  const backgroundImage = post.file1 ? `http://localhost:3000${post.file1}` : ''; // Direct URL to the image
   const authorImage = post.file2 ? `http://localhost:3000${post.file2}` : ''; // Direct URL to the author's image
-
+  const id = post._id;
   return (
-    <div className="bg-white shadow-lg w-full col-span-1 max-w-[60rem] h-full rounded-lg p-0 lg:p-8 pb-12 mb-8">
+    <Link to={`../blogpage/${id}`}>
       <div className="relative h-72">
         {/* Ensure background image is being applied correctly */}
         <div
@@ -18,7 +20,6 @@ const FeaturedCard = ({ post }) => {
           <p className="text-white mb-4 text-shadow font-semibold text-2xl text-center">{post.Title}</p>
           <div className="flex items-center absolute bottom-5 w-full justify-center">
             <img
-              unoptimized
               alt={post.authorname}
               height="30px"
               width="30px"
@@ -29,7 +30,7 @@ const FeaturedCard = ({ post }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

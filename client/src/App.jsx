@@ -89,10 +89,11 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home/>}/>
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogpage/:id" element={<BlogPage/>}/>
         <Route path="/community" element={<Community />} />
         <Route path="/raise-funds" element={<RaiseFunds />} />
         <Route path="/profile" element={<Profile/>} />
-        <Route path="/blogpage" element={<BlogPage/>} />
+        {/* <Route path="/blogpage" element={<BlogPage/>} /> */}
         <Route path="/blogcreation" element={<BlogCreation/>} />
         <Route path="/applicationform" element={<ApplicationForm/>}/>
         <Route path="/messaging" element={<Messaging/>}/>
