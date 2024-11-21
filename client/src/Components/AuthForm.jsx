@@ -128,16 +128,26 @@ const AuthForm = ({ onFormSubmit, isVisible }) => {
     setIsLogin(!isLogin);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Add form validation logic here
     if (isLogin) {
-      // Perform login validation
-      onFormSubmit(true); // Redirect if login is successful
+      // Call the login function
+      try {
+        await login(email, password);
+        onFormSubmit(true); // Redirect on successful login
+      } catch (error) {
+        console.error('Login error:', error);
+      }
     } else {
-      // Perform signup validation (e.g., check if password matches confirmPassword)
+      // Perform signup validation
       if (password === confirmPassword) {
-        onFormSubmit(true); // Redirect if signup is successful
+        try {
+          await signup(email, password);
+          onFormSubmit(true); // Redirect on successful signup
+        } catch (error) {
+          console.error('Signup error:', error);
+        }
       } else {
         alert('Passwords do not match'); // Simple error handling
       }
