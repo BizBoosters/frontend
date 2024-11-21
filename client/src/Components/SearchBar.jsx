@@ -93,9 +93,9 @@ export function AlgoliaSearch() {
       {/* Trigger Input */}
       <input
         type="text"
-        placeholder="Search docs..."
+        placeholder="Search..."
         onClick={() => setIsModalOpen(true)}
-        className="p-2 border rounded-md w-full"
+        className="p-2 border rounded-md w-64"
         readOnly
       />
       {/* Modal */}
