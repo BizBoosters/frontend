@@ -82,7 +82,7 @@ async function login(username, password) {
   const url = "http://localhost:3000/login";
 
   const response = await fetch(url, {
-    method: "POST",
+      method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
@@ -102,7 +102,7 @@ async function signup(email, password) {
   const url = "http://localhost:3000/signup";
 
   const response = await fetch(url, {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json"
     },
