@@ -3,6 +3,10 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { FooterFour } from '../Components/Footer'
 import heroImg from '../assets/HeroImg.svg'
 import AuthForm from '../Components/AuthForm'
+import neuralNetwork from '../assets/neuralNetwork.svg'
+import puzzle from '../assets/puzzle.svg'
+import rocket from '../assets/rocket.svg'
+import userSwitch from '../assets/userSwitch.svg'
 
 const Landing = () => {
     const [showAuthForm, setShowAuthform] =  useState(false);
@@ -48,6 +52,27 @@ const Landing = () => {
             </div>
 
             <AuthForm onFormSubmit={handleFormSubmit} isVisible={showAuthForm}/>
+
+            <div className='px-16 mt-16'>
+                <div className='flex px-6 py-8 bg-blue-100/10 rounded-2xl items-center justify-between'>
+                    <div className='flex flex-1 flex-col gap-2 items-center px-4 text-center h-full'>
+                        <div className='py-2'><img src={userSwitch} className='size-10'/></div>
+                        <p className='px-6 pb-4'>Join a community of over 800,000 founders</p>
+                    </div>
+                    <div className='flex flex-1 flex-col gap-2 items-center px-4 text-center h-full'>
+                        <div className='py-2'><img src={neuralNetwork} className='size-10'/></div>
+                        <p className='px-6 pb-4'>Leverage a network of powerful partners</p>
+                    </div>
+                    <div className='flex flex-1 flex-col gap-2 items-center px-4 text-center h-full'>
+                        <div className='py-2'><img src={puzzle} className='size-10'/></div>
+                        <p className='px-6 pb-4'>Match with over 300 of the world’s top accelerators</p>
+                    </div>
+                    <div className='flex flex-1 flex-col gap-2 items-center px-4 text-center h-full'>
+                        <div className='py-2'><img src={rocket} className='size-10'/></div>
+                        <p className='px-6 pb-4'>Apply to more than 750 of the world’s leading Angel Investment Groups</p>
+                    </div>
+                </div>
+            </div>
            
            <FooterFour />
         </div>

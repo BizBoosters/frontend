@@ -1,8 +1,9 @@
 import Navbar from "../Components/Navbar";
 import { SidebarWithSearch } from "../Components/SideBar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
+import axios from 'axios';
 
 const ApplicationForm = () => {
     const [showNotifications, setShowNotification] = useState(false);
@@ -27,6 +28,66 @@ const ApplicationForm = () => {
         otherExpenses: "",
         taxRate: "",
     });
+    const [plotImage, setPlotImage] = useState(null); 
+
+    const handleChange = (e) => {
+        setPnLInputs({
+          ...pnlInputs,
+          [e.target.name]: e.target.value,
+        });
+      };
+      const [plResult, setPlResult] = useState(null); // To store the P&L results
+    
+      const handleSubmit1 = async (e) => {
+        e.preventDefault();
+      
+        try {
+          const pnlInputsParsed = { ...pnlInputs };
+          const payload = { ...pnlInputsParsed };
+      
+          // Send a POST request to calculate the P&L
+          const response = await fetch('http://127.0.0.1:5001/calculate_pnl', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+          const plotResponse = await fetch('http://127.0.0.1:5001/plot_pnl', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+      
+          if (!plotResponse.ok) {
+            throw new Error('Failed to fetch plot image');
+          }
+      
+          // Convert the plot image response to a URL
+          const imageBlob = await plotResponse.blob();
+          const imageUrl = URL.createObjectURL(imageBlob);
+      
+          // Update the frontend state with the image URL
+          setPlotImage(imageUrl);
+          
+          if (!response.ok) {
+            throw new Error('Failed to calculate P&L');
+          }
+      
+          const result = await response.json();
+          console.log('Results:', result); // Log to check the format
+          setPlResult(result); // Store the result in state
+        } catch (error) {
+          console.error('Error calculating P&L:', error);
+          alert('There was an error processing your request.');
+        }
+      };
+    
+      useEffect(() => {
+        console.log(plResult); // Log to check if the result is being updated
+      }, [plResult]);
 
     const [investmentInputs, setInvestmentInputs] = useState({
         initialInvestment: "",
@@ -38,6 +99,40 @@ const ApplicationForm = () => {
         dividendYield: "",
         decayFactor: "",
     });
+    const [results, setResults] = useState(null);
+  const [plot, setPlot] = useState(null);
+
+  const handleChange1 = (e) => {
+    setInvestmentInputs({ ...investmentInputs, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit2 = async (e) => {
+    e.preventDefault();
+    try {
+      const parsedInputs = {
+        ...investmentInputs,
+        exitTimePeriods: investmentInputs.exitTimePeriods.split(",").map(Number),
+        exitMultiples: investmentInputs.exitMultiples.split(",").map(Number),
+      };
+
+      const response = await fetch("http://127.0.0.1:5001/calculate_returns", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(parsedInputs),
+      });
+
+      if (!response.ok) throw new Error("Error calculating returns");
+
+      const data = await response.json();
+      setResults(data.results);
+      setPlot(data.plot);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to calculate returns");
+    }
+};
 
     const [equityDistribution, setEquityDistribution] = useState({
         shareholders: [],
@@ -46,6 +141,62 @@ const ApplicationForm = () => {
             investmentEquityPercentage: "",
         },
     });
+    const handleAddShareholder = () => {
+        setEquityDistribution((prevState) => ({
+            ...prevState,
+            shareholders: [
+                ...prevState.shareholders,
+                { name: "", equityPercentage: "", isEmployee: false },
+            ],
+        }));
+    };
+    const handleShareholderChange = (index, key, value) => {
+        const updatedShareholders = [...equityDistribution.shareholders];
+        updatedShareholders[index][key] = value;
+        setEquityDistribution((prevState) => ({
+            ...prevState,
+            shareholders: updatedShareholders,
+        }));
+    };
+    const [updatedCapTable, setUpdatedCapTable] = useState([]);
+    useEffect(() => {
+        // Clear stored data on refresh, if needed
+        localStorage.removeItem('shareholderData');  // Example for localStorage
+    }, []);
+    
+    const handleSubmit4 = async (e) => {
+        e.preventDefault();
+
+        // Add all shareholders to the backend
+        for (const shareholder of equityDistribution.shareholders) {
+            await axios.post("http://127.0.0.1:5001/add-shareholder", {
+                name: shareholder.name,
+                equityPercentage: parseFloat(shareholder.equityPercentage),
+                isEmployee: shareholder.isEmployee,
+                vestingSchedule: shareholder.vestingSchedule || null,
+            });
+        }
+
+        // Simulate funding round
+        await axios.post("http://127.0.0.1:5001/simulate-funding", {
+            newInvestorName: equityDistribution.fundingRound.newInvestorName,
+            investmentEquityPercentage: parseFloat(
+                equityDistribution.fundingRound.investmentEquityPercentage
+            ),
+        });
+
+        // Get updated cap table
+        const response = await axios.get("http://127.0.0.1:5001/get-cap-table");
+        setUpdatedCapTable(response.data);
+        console.log(response.data)
+        setEquityDistribution({
+            shareholders: [],
+            fundingRound: {
+                newInvestorName: "",
+                investmentEquityPercentage: "",
+            },
+        });
+    };
 
     const [valuationInputs, setValuationInputs] = useState({
         revenue: "",
@@ -54,19 +205,77 @@ const ApplicationForm = () => {
         marketShare: "",
         industryMultiplier: "",
     });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Co-Founder Equity Data:", cofounderEquity);
-        console.log("P&L Inputs:", pnlInputs);
-        console.log("Investment Inputs:", investmentInputs);
-        console.log("Equity Distribution:", equityDistribution);
-        console.log("Valuation Inputs:", valuationInputs);
+    const [valuation, setValuation] = useState(null);
     
-        alert("Form submitted! Check the console for details.");
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setValuationInputs({
+          ...valuationInputs,
+          [name]: value,
+        });
       };
 
+      const calculateValuation = async () => {
+        try {
+          const response = await axios.post("http://127.0.0.1:5001/calculate_valuation", valuationInputs);
+          setValuation(response.data.valuation);
+        } catch (error) {
+          console.error("Error calculating valuation:", error);
+          alert("Failed to calculate valuation. Please check your inputs.");
+        }
+      };
+
+    const [equityResult, setEquityResult] = useState(null);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const weightsParsed = JSON.parse(cofounderEquity.weights);
+            const contributionsParsed = JSON.parse(cofounderEquity.cofounderContributions);
+
+            const payload = {
+                founderEquity: cofounderEquity.founderEquity,
+                weights: weightsParsed,
+                cofounderContributions: contributionsParsed,
+            };
+
+            const response = await fetch('http://127.0.0.1:5001/calculate-equity', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch results from the server');
+            }
+
+            const result = await response.json();
+            
+            // Update state with the result
+            setEquityResult(result);
+            console.log(result);
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            alert('There was an error processing your request.');
+        }
+    };
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log("Co-Founder Equity Data:", cofounderEquity);
+    //     console.log("P&L Inputs:", pnlInputs);
+    //     console.log("Investment Inputs:", investmentInputs);
+    //     console.log("Equity Distribution:", equityDistribution);
+    //     console.log("Valuation Inputs:", valuationInputs);
+    
+    //     alert("Form submitted! Check the console for details.");
+    //   };
+
         // Handle shareholders array input
+
     const addShareholder = () => {
         setEquityDistribution((prevState) => ({
         ...prevState,
@@ -77,15 +286,15 @@ const ApplicationForm = () => {
         }));
     };
 
-    const handleShareholderChange = (index, field, value) => {
-        const updatedShareholders = equityDistribution.shareholders.map((shareholder, i) =>
-        i === index ? { ...shareholder, [field]: value } : shareholder
-        );
-        setEquityDistribution((prevState) => ({
-        ...prevState,
-        shareholders: updatedShareholders,
-        }));
-    };
+    // const handleShareholderChange = (index, field, value) => {
+    //     const updatedShareholders = equityDistribution.shareholders.map((shareholder, i) =>
+    //     i === index ? { ...shareholder, [field]: value } : shareholder
+    //     );
+    //     setEquityDistribution((prevState) => ({
+    //     ...prevState,
+    //     shareholders: updatedShareholders,
+    //     }));
+    // };
 
     return (
         <div className="flex h-screen overflow-hidden bg-bgWhite">
@@ -169,6 +378,14 @@ const ApplicationForm = () => {
                                             Submit
                                         </button>
                                     </form>
+                                    {/* Conditionally render the result */}
+                                    {equityResult && (
+                                        <div>
+                                            <h3>Equity Calculation Result:</h3>
+                                            <p>New Founder Equity: {equityResult.newFounderEquity}</p>
+                                            <p>Co-Founder Equity: {equityResult.cofounderEquity}</p>
+                                        </div>
+                                    )}  
                                 </div>
 
                                 {/* Section 2: P&L Statement Generator */}
@@ -351,6 +568,28 @@ const ApplicationForm = () => {
                                         </button>
                                         {/* Add other financial data inputs similar to the above */}
                                     </form>
+                                    {plResult && plResult.result && (
+                                    <div>
+                                        <h3>P&L Results</h3>
+                                        <ul>
+                                        <li>Gross Profit: {plResult.result.grossProfit}</li>
+                                        <li>Operating Profit: {plResult.result.operatingProfit}</li>
+                                        <li>EBT: {plResult.result.ebt}</li>
+                                        <li>Net Profit: {plResult.result.netProfit}</li>
+                                        <li>Interest Income: {plResult.result.interestIncome}</li>
+                                        <li>Interest Expense: {plResult.result.interestExpense}</li>
+                                        <li>Other Income: {plResult.result.otherIncome}</li>
+                                        <li>Other Expenses: {plResult.result.otherExpenses}</li>
+                                        <li>Tax Expense: {plResult.result.taxExpense}</li>
+                                        </ul>
+                                    </div>
+                                    )}
+                                    {plotImage && (
+                                        <div className="mt-6">
+                                        <h3 className="text-lg font-semibold">P&L Plot</h3>
+                                        <img src={plotImage} alt="P&L Plot" className="w-full" />
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Section 3: Investment ROI Simulator */}
@@ -367,12 +606,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter initial investment amount"
                                                 value={investmentInputs.initialInvestment}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        initialInvestment: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}
                                             />
                                         </div>
                                         <div>
@@ -385,12 +619,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter exit time period"
                                                 value={investmentInputs.exitTimePeriods}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        exitTimePeriods: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                         
                                             />
                                         </div>
                                         <div>
@@ -403,12 +632,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter exit multiples"
                                                 value={investmentInputs.exitMultiples}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        exitMultiples: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                               
                                             />
                                         </div>
                                         <div>
@@ -421,12 +645,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter base growth rate"
                                                 value={investmentInputs.baseGrowthRate}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        baseGrowthRate: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                               
                                             />
                                         </div>
                                         <div>
@@ -439,12 +658,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter inflation rate"
                                                 value={investmentInputs.inflationRate}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        inflationRate: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                               
                                             />
                                         </div>
                                         <div>
@@ -457,12 +671,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter volatility"
                                                 value={investmentInputs.volatility}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        volatility: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                               
                                             />
                                         </div>
                                         <div>
@@ -475,12 +684,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter dividend yield"
                                                 value={investmentInputs.dividendYield}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        dividendYield: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                               
                                             />
                                         </div>
                                         <div>
@@ -493,12 +697,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter decay factor"
                                                 value={investmentInputs.decayFactor}
-                                                onChange={(e) =>
-                                                    setInvestmentInputs({
-                                                        ...investmentInputs,
-                                                        decayFactor: e.target.value,
-                                                    })
-                                                }
+                                                onChange={handleChange1}                                               
                                             />
                                         </div>
                                         {/* Add remaining inputs */}
@@ -509,6 +708,30 @@ const ApplicationForm = () => {
                                             Submit
                                         </button>
                                     </form>
+                                    {results && (
+                                        <div>
+                                        <h2>Simulation Results</h2>
+                                        <ul>
+                                            {Object.entries(results).map(([exitTime, rois]) => (
+                                            <li key={exitTime}>
+                                                Exit in {exitTime} years:
+                                                <ul>
+                                                {rois.map((roi, index) => (
+                                                    <li key={index}>Multiple {investmentInputs.exitMultiples.split(",")[index]}x: {roi.toFixed(2)}%</li>
+                                                ))}
+                                                </ul>
+                                            </li>
+                                            ))}
+                                        </ul>
+                                        </div>
+                                    )}
+
+                                    {plot && (
+                                        <div>
+                                        <h2>ROI Plot</h2>
+                                        {/* <img src={data:image/png;base64,${plot}} alt="ROI Plot" /> */}
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Section 4: Equity Distribution Tracker */}
@@ -608,6 +831,31 @@ const ApplicationForm = () => {
                                             Submit
                                         </button>
                                     </form>
+                                    {updatedCapTable && (
+                                    <div className="mt-6">
+                                        <h3 className="text-base font-medium">Updated Cap Table</h3>
+                                        <table className="min-w-full bg-white rounded-lg mt-4">
+                                            <thead className="font-primary text-black-500">
+                                                <tr>
+                                                    <th className="p-4 text-left text-base font-medium">Name</th>
+                                                    <th className="p-4 text-left text-base font-medium">Total Equity</th>
+                                                    <th className="p-4 text-left text-base font-medium">Unvested Equity</th>
+                                                    <th className="p-4 text-left text-base font-medium">Vested Equity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {updatedCapTable.map((shareholder, index) => (
+                                                    <tr key={index}>
+                                                        <td className="p-4">{shareholder.name}</td>
+                                                        <td className="p-4">{shareholder.total_equity}</td>
+                                                        <td className="p-4">{shareholder.unvested_equity}</td>
+                                                        <td className="p-4">{shareholder.vested_equity}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    )}
                                 </div>
 
                                 {/* Section 5: Business Valuation Calculator */}
@@ -624,9 +872,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter current revenue"
                                                 value={valuationInputs.revenue}
-                                                onChange={(e) =>
-                                                    setValuationInputs({ ...valuationInputs, revenue: e.target.value })
-                                                }
+                                                onChange={handleInputChange}
                                             />
                                         </div>
                                         <div>
@@ -639,9 +885,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter growth rate"
                                                 value={valuationInputs.growthRate}
-                                                onChange={(e) =>
-                                                    setValuationInputs({ ...valuationInputs, growthRate: e.target.value })
-                                                }
+                                                onChange={handleInputChange}
                                             />
                                         </div>
                                         <div>
@@ -654,9 +898,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter Total Addressable Market (TAM)"
                                                 value={valuationInputs.tam}
-                                                onChange={(e) =>
-                                                    setValuationInputs({ ...valuationInputs, tam: e.target.value })
-                                                }
+                                                onChange={handleInputChange}
                                             />
                                         </div>
                                         <div>
@@ -669,9 +911,7 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter market share percentage"
                                                 value={valuationInputs.marketShare}
-                                                onChange={(e) =>
-                                                    setValuationInputs({ ...valuationInputs, marketShare: e.target.value })
-                                                }
+                                                onChange={handleInputChange}
                                             />
                                         </div>
                                         <div>
@@ -684,18 +924,22 @@ const ApplicationForm = () => {
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Enter industry multiplier"
                                                 value={valuationInputs.industryMultiplier}
-                                                onChange={(e) =>
-                                                    setValuationInputs({ ...valuationInputs, industryMultiplier: e.target.value })
-                                                }
+                                                onChange={handleInputChange}
                                             />
                                         </div>
                                         <button 
+                                            onClick={calculateValuation}
                                             type="submit" 
                                             className="py-2.5 px-16 mt-5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
                                         >
-                                            Submit
+                                            Calculate Valuation
                                         </button>
                                     </form>
+                                    {valuation !== null && (
+                                    <div style={{ marginTop: "20px" }}>
+                                        <h3>Estimated Company Valuation: ${valuation.toLocaleString()}</h3>
+                                    </div>
+      )}
                                 </div>
                             </div>
                         </div>

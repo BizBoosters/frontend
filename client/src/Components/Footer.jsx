@@ -9,7 +9,7 @@ export function FooterFour() {
         <div className="-m-6 flex flex-wrap justify-between">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
-              <div className="mb-4 inline-flex items-center">
+              {/* <div className="mb-4 inline-flex items-center">
                 <svg
                 className='bg-white'
                   width="40"
@@ -24,7 +24,7 @@ export function FooterFour() {
                   />
                 </svg>
                 <span className="ml-4 text-lg font-bold text-white">DevUI</span>
-              </div>
+              </div> */}
               <div>
                 <p className="mb-4  text-base font-logowala font-medium text-blue-500">Bizboost</p>
                 <p className="text-sm text-gray-600">

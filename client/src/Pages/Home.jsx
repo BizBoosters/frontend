@@ -17,6 +17,12 @@ import {
 }from "@heroicons/react/24/solid"
 import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
+import graph1 from '../assets/graph1.svg';
+import Onboarding from '../assets/Onboarding.svg'
+import Profits from '../assets/Profits.svg'
+import Sales from '../assets/Sales.svg'
+import ActiveVisitors from '../assets/ActiveVisitors.svg'
+import ConversionRate from '../assets/ConversionRate.svg'
 
 const Home = () => {
   const [showNotifications, setShowNotification] = useState(false); 
@@ -63,23 +69,34 @@ const Home = () => {
 
                 <div className="mt-6 bg-white p-6 rounded-lg shadow">
                   {/* Total Users Graph */}
-                  <h3 className="text-gray-700 text-sm font-medium">Total Users</h3>
+                  {/* <h3 className="text-gray-700 text-sm font-medium">Total Users</h3> */}
                   {/* Graph Component */}
-                  <div className="mt-4 h-32 bg-gray-200 rounded-lg"></div>
+                  <div className="flex mt-4 rounded-lg cursor-pointer gap-1">
+                    <img src={graph1} className="bg-cover"/>
+                    <div className="flex flex-col h-full justify-between">
+                      <img src={Onboarding}/>
+                      <img src={Profits}/>
+                      <img src={Sales}/>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
                   {/* Traffic by Device */}
                   <div className="bg-white p-6 rounded-lg shadow">
-                    <h3 className="text-gray-700 text-sm font-medium">Traffic by Device</h3>
+                    {/* <h3 className="text-gray-700 text-sm font-medium">Traffic by Device</h3> */}
                     {/* Traffic Chart Placeholder */}
-                    <div className="mt-4 h-32 bg-gray-200 rounded-lg"></div>
+                    <div className="mt-4 rounded-lg cursor-pointer">
+                      <img src={ActiveVisitors}/>
+                    </div>
                   </div>
                   {/* Traffic by Location */}
                   <div className="bg-white p-6 rounded-lg shadow">
-                    <h3 className="text-gray-700 text-sm font-medium">Traffic by Location</h3>
+                    {/* <h3 className="text-gray-700 text-sm font-medium">Traffic by Location</h3> */}
                     {/* Location Chart Placeholder */}
-                    <div className="mt-4 h-32 bg-gray-200 rounded-lg"></div>
+                    <div className="mt-4 rounded-lg cursor-pointer">
+                      <img src={ConversionRate}/>
+                    </div>
                   </div>
                 </div>
               </div>
