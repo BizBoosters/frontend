@@ -21,34 +21,45 @@ const Messaging = () => {
   const toggleNotifications = () => setShowNotification(!showNotifications);
 
   useEffect(() => {
-    // Join a room based on user type (or other unique identifier)
+    // Join room for the current user
     socket.emit("joinRoom", currentUserType);
 
-    // Listen for new messages from the server
-    socket.on("message", (data) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
+    // Fetch conversation history
+    socket.emit("fetchConversation", {
+      sender: currentUserType,
+      receiver: receiverType,
+    });
+
+    // Listen for real-time messages
+    socket.on("message", (newMessage) => {
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    });
+
+    // Listen for conversation history
+    socket.on("conversationHistory", (fetchedMessages) => {
+      setMessages(fetchedMessages);
     });
 
     return () => {
       socket.off("message");
+      socket.off("conversationHistory");
     };
-  }, [currentUserType]);
+  }, [currentUserType, receiverType]);
 
+  // Handle sending a new message
   const handleSendMessage = () => {
     if (inputMessage.trim() === "") return;
 
     const newMessage = {
       sender: currentUserType,
+      receiver: receiverType,
       content: inputMessage,
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
 
-    // Emit the message to the server
-    socket.emit("message", { userId: receiverType, message: newMessage });
+    // Emit the message event to the backend
+    socket.emit("message", newMessage);
 
-    // Update UI immediately
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-    setInputMessage("");
+    setInputMessage(""); // Clear input
   };
 
   return (
@@ -87,6 +98,11 @@ const Messaging = () => {
                       type="text"
                       value={inputMessage}
                       onChange={(e) => setInputMessage(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          handleSendMessage(); // Call the function when Enter is pressed
+                        }
+                      }}
                       className="flex-grow p-2 border rounded-lg"
                       placeholder={`Type a message to ${receiverType}...`}
                   />
@@ -101,7 +117,7 @@ const Messaging = () => {
             </div>
           </section>
         </main>
-        {showNotifications && <NotificationPanel />}
+        {showNotifications && <NotificationPanel/>}
       </div>
   );
 };
