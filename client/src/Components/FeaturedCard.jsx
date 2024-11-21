@@ -1,7 +1,7 @@
 import React from 'react';
 
 const FeaturedCard = ({ post }) => {
-  const backgroundImage = post.file1 ? `http://localhost:3000${post.file1}` : ''; // Direct URL to the image
+  const backgroundImage = post.file1 ? `${post.file1}` : ''; // Direct URL to the image
   const authorImage = post.file2 ? `http://localhost:3000${post.file2}` : ''; // Direct URL to the author's image
 
   return (
