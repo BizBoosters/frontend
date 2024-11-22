@@ -95,7 +95,10 @@ async function login(username, password) {
 
   if (response.ok) {
     const data = await response.json();
-    Cookies.set("token", data._id, {
+    Cookies.set("token", data.accessToken, {
+      expires: 30,
+    });
+    Cookies.set("stoken", data.user._id, {
       expires: 30,
     });
     console.log("Login successful:", data);

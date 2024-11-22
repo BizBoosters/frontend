@@ -34,7 +34,7 @@ const Messaging = () => {
 
 
   // const queryParams = new URLSearchParams(window.location.search);
-  const userTypeFromQuery = Cookies.get("token"); //queryParams.get("userType");
+  const userTypeFromQuery = Cookies.get("stoken"); //queryParams.get("userType");
   const [currentUserType, setCurrentUserType] = useState(userTypeFromQuery);
   Cookies.set("receivertoken", "Entre");
   const [receiverType, setReceiverType] = useState(Cookies.get("receivertoken"));
