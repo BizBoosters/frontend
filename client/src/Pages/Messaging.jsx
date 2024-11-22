@@ -13,15 +13,26 @@ const Messaging = () => {
   const [showNotifications, setShowNotification] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const queryParams = new URLSearchParams(window.location.search);
+  // const queryParams = new URLSearchParams(window.location.search);
   
   const [selectedChat, setSelectedChat] = useState(null);
 
-  const chats = [
-    { userType: "Entrepreneur1", name: "John Doe", profilePicture: "/path/to/image1.jpg" },
-    { userType: "Entrepreneur2", name: "Jane Smith", profilePicture: "/path/to/image2.jpg" },
-    { userType: "Entrepreneur3", name: "Alice Johnson", profilePicture: "/path/to/image3.jpg" },
-  ];
+  // const chats = [
+  //   { userType: "Entrepreneur1", name: "John Doe", profilePicture: "/path/to/image1.jpg" },
+  //   { userType: "Entrepreneur2", name: "Jane Smith", profilePicture: "/path/to/image2.jpg" },
+  //   { userType: "Entrepreneur3", name: "Alice Johnson", profilePicture: "/path/to/image3.jpg" },
+  // ];
+
+  const [chats, setChats] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/users")
+        .then((response) => response.json())
+        .then((chats) => setChats(chats))
+        .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+
   // const queryParams = new URLSearchParams(window.location.search);
   const userTypeFromQuery = Cookies.get("token"); //queryParams.get("userType");
   const [currentUserType, setCurrentUserType] = useState(userTypeFromQuery);
@@ -74,13 +85,18 @@ const Messaging = () => {
 
   const handleChatSelection = (chatUser) => {
     // Update the receiver type and reset messages
-    setReceiverType(chatUser.userType);
+    setReceiverType(chatUser._id);
+    Cookies.set("receivertoken", chatUser._id);
     setSelectedChat(chatUser);
 
     // Fetch the conversation for the newly selected chat
     socket.emit("fetchConversation", {
       sender: currentUserType,
-      receiver: chatUser.userType,
+      receiver: chatUser._id,
+
+    });
+    socket.on("message", (newMessage) => {
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
     });
   };
 
