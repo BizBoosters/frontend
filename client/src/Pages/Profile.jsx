@@ -268,7 +268,7 @@ const Profile = () => {
                   <img src={bgImage1} alt="Company Logo" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-col gap-[2px]">
-                  <p className="font-bold text-xl">Company Name</p>
+                  <p className="font-bold text-xl">Homelight</p>
                   <p>Our vision is a world where every real estate transaction is simple, certain, and satisfying everyone.</p>
                   <p className="text-sm italic text-gray-500">500-1001 employees</p>
                 </div>
