@@ -77,12 +77,16 @@
 //   );
 // }
 
+
+
+
+import Cookies from "js-cookie";
 // export default AuthForm;
 async function login(username, password) {
   const url = "http://localhost:3000/login";
 
   const response = await fetch(url, {
-      method: "GET",
+      method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
@@ -91,7 +95,11 @@ async function login(username, password) {
 
   if (response.ok) {
     const data = await response.json();
+    Cookies.set("token", data.accessToken, {
+      expires: 30,
+    });
     console.log("Login successful:", data);
+    // return response.json(data);
   } else {
     console.error("Login failed:", response.status, response.statusText);
   }
@@ -102,7 +110,7 @@ async function signup(email, password) {
   const url = "http://localhost:3000/signup";
 
   const response = await fetch(url, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
@@ -111,7 +119,11 @@ async function signup(email, password) {
 
   if (response.ok) {
     const data = await response.json();
+    // Cookies.set("token", data.accessToken, {
+    //   expires: 30,
+    // });
     console.log("Signup successful:", data);
+    // return response.json(data);
   } else {
     console.error("Signup failed:", response.status, response.statusText);
   }
@@ -144,7 +156,7 @@ const AuthForm = ({ onFormSubmit, isVisible }) => {
       if (password === confirmPassword) {
         try {
           await signup(email, password);
-          onFormSubmit(true); // Redirect on successful signup
+          // onFormSubmit(true); // Redirect on successful signup
         } catch (error) {
           console.error('Signup error:', error);
         }
