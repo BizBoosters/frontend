@@ -3,21 +3,18 @@ import { SidebarWithSearch } from "../Components/SideBar";
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import NotificationPanel from "../Components/NotificationPanel";
-
+import Cookies from "js-cookie";
 const socket = io("http://localhost:9000", {
   transports: ["websocket", "polling"],
 });
+
 
 const Messaging = () => {
   const [showNotifications, setShowNotification] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const queryParams = new URLSearchParams(window.location.search);
-  const userTypeFromQuery = queryParams.get("userType");
-  const [currentUserType, setCurrentUserType] = useState(userTypeFromQuery || "Investor");
-  const [receiverType, setReceiverType] = useState(
-    userTypeFromQuery === "Investor" ? "Entrepreneur" : "Investor"
-  );
+  
   const [selectedChat, setSelectedChat] = useState(null);
 
   const chats = [
@@ -25,6 +22,11 @@ const Messaging = () => {
     { userType: "Entrepreneur2", name: "Jane Smith", profilePicture: "/path/to/image2.jpg" },
     { userType: "Entrepreneur3", name: "Alice Johnson", profilePicture: "/path/to/image3.jpg" },
   ];
+  // const queryParams = new URLSearchParams(window.location.search);
+  const userTypeFromQuery = Cookies.get("token"); //queryParams.get("userType");
+  const [currentUserType, setCurrentUserType] = useState(userTypeFromQuery);
+  Cookies.set("receivertoken", "Entre");
+  const [receiverType, setReceiverType] = useState(Cookies.get("receivertoken"));
 
   const toggleNotifications = () => setShowNotification(!showNotifications);
 

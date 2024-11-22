@@ -7,6 +7,7 @@ import NotificationPanel from "../Components/NotificationPanel";
 import ChatbaseChatbot from "../Components/Chatbot1";
 import {BackgroundBlogCard} from '../Components/Cards'
 import FeaturedCard from '../Components/FeaturedCard';
+import { Link } from 'react-router-dom';
 
 const Blogs = () => {
 
