@@ -18,7 +18,7 @@ const PostCard = ({ post }) => (
       />
     </div> */}
     <div className="relative overflow-hidden shadow-md h-96 max-h-96 mb-6">
-      <img src={`http://localhost:3000${post.file1}`} alt="" className="object-top absolute h-full w-full object-fill  shadow-lg rounded-t-lg lg:rounded-lg" />
+      <img src={post.file1} alt="" className="object-top absolute h-full w-full object-fill  shadow-lg rounded-t-lg lg:rounded-lg" />
     </div>
 
     
@@ -47,7 +47,7 @@ const PostCard = ({ post }) => (
       {post.Content}
     </p>
     <div className="relative overflow-hidden  h-96 max-h-96 mb-6">
-      <img src={`http://localhost:3000${post.file2}`} alt="" className="object-top absolute h-full w-full object-contain  shadow-lg rounded-t-lg lg:rounded-lg" />
+      <img src={post.file2} alt="" className="object-top absolute h-full w-full object-contain  shadow-lg rounded-t-lg lg:rounded-lg" />
     </div>
     <div className="text-center">
       {/* <Link href={`/post/${post.slug}`}>

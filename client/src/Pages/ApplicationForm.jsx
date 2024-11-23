@@ -1,14 +1,7 @@
-import Navbar from "../Components/Navbar";
-import { SidebarWithSearch } from "../Components/SideBar";
-import React, { useState,useEffect } from "react";
-import NotificationPanel from "../Components/NotificationPanel";
-import ChatbaseChatbot from "../Components/Chatbot1";
+import React, {useState, useEffect} from "react";
 import axios from 'axios';
 
 const ApplicationForm = () => {
-    const [showNotifications, setShowNotification] = useState(false);
-    const toggleNotifications = () => setShowNotification(!showNotifications);
-
     const [cofounderEquity, setCofounderEquity] = useState({
         founderEquity: "",
         weights: "",
@@ -42,8 +35,8 @@ const ApplicationForm = () => {
         e.preventDefault();
 
         try {
-            const pnlInputsParsed = { ...pnlInputs };
-            const payload = { ...pnlInputsParsed };
+            const pnlInputsParsed = {...pnlInputs};
+            const payload = {...pnlInputsParsed};
 
             // Send a POST request to calculate the P&L
             const response = await fetch('http://127.0.0.1:5002/calculate_pnl', {
@@ -103,7 +96,7 @@ const ApplicationForm = () => {
     const [plot, setPlot] = useState(null);
 
     const handleChange1 = (e) => {
-        setInvestmentInputs({ ...investmentInputs, [e.target.name]: e.target.value });
+        setInvestmentInputs({...investmentInputs, [e.target.name]: e.target.value});
     };
 
     const handleSubmit2 = async (e) => {
@@ -146,7 +139,7 @@ const ApplicationForm = () => {
             ...prevState,
             shareholders: [
                 ...prevState.shareholders,
-                { name: "", equityPercentage: "", isEmployee: false },
+                {name: "", equityPercentage: "", isEmployee: false},
             ],
         }));
     };
@@ -209,7 +202,7 @@ const ApplicationForm = () => {
     const [valuation, setValuation] = useState(null);
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setValuationInputs({
             ...valuationInputs,
             [name]: value,
@@ -269,384 +262,370 @@ const ApplicationForm = () => {
 
 
     return (
-        <div className="flex h-screen overflow-hidden bg-bgWhite">
-            {/* Sidebar */}
+        <section className="overflow-y-auto p-6 mt-2">
+            <div className="w-full">
+                <div className="max-w-5xl font-primary">
+                    <h1 className="text-3xl font-bold mb-6">Application Form</h1>
+                    <div className="space-y-10">
+                        {/* Section 1: Co-Founder Equity Allocation */}
+                        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+                            <h2 className="text-xl font-bold mb-4">Co-Founder Equity Allocation</h2>
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                {/* <div className="fl "> */}
+                                <div>
+                                    <label htmlFor="founderEquity" className="block mb-2 text-sm font-medium">
+                                        Founder Equity
+                                    </label>
+                                    <input
+                                        type="number"
+                                        id="founderEquity"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="Enter founder equity percentage"
+                                        value={cofounderEquity.founderEquity}
+                                        onChange={(e) =>
+                                            setCofounderEquity({...cofounderEquity, founderEquity: e.target.value})
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="weights" className="block mb-2 text-sm font-medium">
+                                        Contribution Weights
+                                    </label>
+                                    <textarea
+                                        id="weights"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder='e.g., {"problem_solving": 0.2, "experience": 0.3}'
+                                        value={cofounderEquity.weights}
+                                        onChange={(e) =>
+                                            setCofounderEquity({...cofounderEquity, weights: e.target.value})
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="contributions" className="block mb-2 text-sm font-medium">
+                                        Co-Founder Contributions
+                                    </label>
+                                    <textarea
+                                        id="contributions"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder='e.g., {"problem_solving": 0.8, "experience": 0.6}'
+                                        value={cofounderEquity.cofounderContributions}
+                                        onChange={(e) =>
+                                            setCofounderEquity({
+                                                ...cofounderEquity,
+                                                cofounderContributions: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+                                {/* </div> */}
 
-            <SidebarWithSearch />
+                                <button
+                                    type="submit"
+                                    className="py-2.5 px-16 mt-5 text-sm justify-right font-medium text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                            {/* Conditionally render the result */}
+                            {equityResult && (
+                                <div>
+                                    <h3>Equity Calculation Result:</h3>
+                                    <p>New Founder Equity: {equityResult.newFounderEquity}</p>
+                                    <p>Co-Founder Equity: {equityResult.cofounderEquity}</p>
+                                </div>
+                            )}
+                        </div>
 
-
-
-            {/* Main Content */}
-            <main className="flex flex-col flex-grow">
-                {/* Navbar */}
-                <div className={`${showNotifications ? "w-[1048px]" : "w-full"}`}>
-                    <Navbar toggleNotifications={toggleNotifications} />
-                </div>
-
-
-                {/* Scrollable content */}
-                <section className="overflow-y-auto p-6 mt-2">
-                    <div className="w-full">
-                        <div className="max-w-5xl font-primary">
-                            <h1 className="text-3xl font-bold mb-6">Application Form</h1>
-                            <div className="space-y-10">
-                                {/* Section 1: Co-Founder Equity Allocation */}
-                                <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-                                    <h2 className="text-xl font-bold mb-4">Co-Founder Equity Allocation</h2>
-                                    <form onSubmit={handleSubmit} className="space-y-4">
-                                        {/* <div className="fl "> */}
-                                        <div>
-                                            <label htmlFor="founderEquity" className="block mb-2 text-sm font-medium">
-                                                Founder Equity
-                                            </label>
-                                            <input
-                                                type="number"
-                                                id="founderEquity"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder="Enter founder equity percentage"
-                                                value={cofounderEquity.founderEquity}
-                                                onChange={(e) =>
-                                                    setCofounderEquity({ ...cofounderEquity, founderEquity: e.target.value })
-                                                }
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="weights" className="block mb-2 text-sm font-medium">
-                                                Contribution Weights
-                                            </label>
-                                            <textarea
-                                                id="weights"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder='e.g., {"problem_solving": 0.2, "experience": 0.3}'
-                                                value={cofounderEquity.weights}
-                                                onChange={(e) =>
-                                                    setCofounderEquity({ ...cofounderEquity, weights: e.target.value })
-                                                }
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="contributions" className="block mb-2 text-sm font-medium">
-                                                Co-Founder Contributions
-                                            </label>
-                                            <textarea
-                                                id="contributions"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder='e.g., {"problem_solving": 0.8, "experience": 0.6}'
-                                                value={cofounderEquity.cofounderContributions}
-                                                onChange={(e) =>
-                                                    setCofounderEquity({
-                                                        ...cofounderEquity,
-                                                        cofounderContributions: e.target.value,
-                                                    })
-                                                }
-                                            />
-                                        </div>
-                                        {/* </div> */}
-
-                                        <button
-                                            type="submit"
-                                            className="py-2.5 px-16 mt-5 text-sm justify-right font-medium text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
-                                        >
-                                            Submit
-                                        </button>
-                                    </form>
-                                    {/* Conditionally render the result */}
-                                    {equityResult && (
-                                        <div>
-                                            <h3>Equity Calculation Result:</h3>
-                                            <p>New Founder Equity: {equityResult.newFounderEquity}</p>
-                                            <p>Co-Founder Equity: {equityResult.cofounderEquity}</p>
-                                        </div>
-                                    )}
+                        {/* Section 2: P&L Statement Generator */}
+                        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+                            <h2 className="text-xl font-bold mb-4">Profit & Loss (P&L) Statement Generator</h2>
+                            <form className="space-y-4 grid grid-cols-2 gap-4" onSubmit={handleSubmit1}>
+                                <div className="mt-5">
+                                    <label htmlFor="periodType" className="block mb-2 text-sm font-medium">Period
+                                        Type</label>
+                                    <select
+                                        id="periodType"
+                                        name="periodType"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.periodType}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="monthly">Monthly</option>
+                                        <option value="6-month">6-Month</option>
+                                        <option value="yearly">Yearly</option>
+                                    </select>
                                 </div>
 
-                                {/* Section 2: P&L Statement Generator */}
-                                <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-                                    <h2 className="text-xl font-bold mb-4">Profit & Loss (P&L) Statement Generator</h2>
-                                    <form className="space-y-4 grid grid-cols-2 gap-4" onSubmit={handleSubmit1}>
-                                        <div className="mt-5">
-                                            <label htmlFor="periodType" className="block mb-2 text-sm font-medium">Period Type</label>
-                                            <select
-                                                id="periodType"
-                                                name="periodType"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.periodType}
-                                                onChange={handleChange}
-                                            >
-                                                <option value="monthly">Monthly</option>
-                                                <option value="6-month">6-Month</option>
-                                                <option value="yearly">Yearly</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="sales" className="block mb-2 text-sm font-medium">Sales</label>
-                                            <input
-                                                type="number"
-                                                id="sales"
-                                                name="sales"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.sales}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="cogs" className="block mb-2 text-sm font-medium">Cost of Goods Sold (COGS)</label>
-                                            <input
-                                                type="number"
-                                                id="cogs"
-                                                name="cogs"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.cogs}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="operatingExpenses" className="block mb-2 text-sm font-medium">Operating Expenses</label>
-                                            <input
-                                                type="number"
-                                                id="operatingExpenses"
-                                                name="operatingExpenses"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.operatingExpenses}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="depreciation" className="block mb-2 text-sm font-medium">Depreciation</label>
-                                            <input
-                                                type="number"
-                                                id="depreciation"
-                                                name="depreciation"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.depreciation}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="amortization" className="block mb-2 text-sm font-medium">Amortization</label>
-                                            <input
-                                                type="number"
-                                                id="amortization"
-                                                name="amortization"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.amortization}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="interestExpense" className="block mb-2 text-sm font-medium">Interest Expense</label>
-                                            <input
-                                                type="number"
-                                                id="interestExpense"
-                                                name="interestExpense"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.interestExpense}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="interestIncome" className="block mb-2 text-sm font-medium">Interest Income</label>
-                                            <input
-                                                type="number"
-                                                id="interestIncome"
-                                                name="interestIncome"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.interestIncome}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="otherIncome" className="block mb-2 text-sm font-medium">Other Income</label>
-                                            <input
-                                                type="number"
-                                                id="otherIncome"
-                                                name="otherIncome"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.otherIncome}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="otherExpenses" className="block mb-2 text-sm font-medium">Other Expenses</label>
-                                            <input
-                                                type="number"
-                                                id="otherExpenses"
-                                                name="otherExpenses"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.otherExpenses}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label htmlFor="taxRate" className="block mb-2 text-sm font-medium">Tax Rate</label>
-                                            <input
-                                                type="number"
-                                                id="taxRate"
-                                                name="taxRate"
-                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                value={pnlInputs.taxRate}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
-
-                                        <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">Generate P&L</button>
-                                    </form>
-                                    {plResult && plResult.result && (
-                                        <div>
-                                            <h3>P&L Results</h3>
-                                            <ul>
-                                                <li>Gross Profit: {plResult.result.grossProfit}</li>
-                                                <li>Operating Profit: {plResult.result.operatingProfit}</li>
-                                                <li>EBT: {plResult.result.ebt}</li>
-                                                <li>Net Profit: {plResult.result.netProfit}</li>
-                                                <li>Interest Income: {plResult.result.interestIncome}</li>
-                                                <li>Interest Expense: {plResult.result.interestExpense}</li>
-                                                <li>Other Income: {plResult.result.otherIncome}</li>
-                                                <li>Other Expenses: {plResult.result.otherExpenses}</li>
-                                                <li>Tax Expense: {plResult.result.taxExpense}</li>
-                                            </ul>
-                                        </div>
-                                    )}
-
-
-                                    {plotImage && (
-                                        <div className="mt-6">
-                                            <h3 className="text-lg font-semibold">P&L Plot</h3>
-                                            <img src={plotImage} alt="P&L Plot" className="w-full" />
-                                        </div>
-                                    )}
+                                <div>
+                                    <label htmlFor="sales" className="block mb-2 text-sm font-medium">Sales</label>
+                                    <input
+                                        type="number"
+                                        id="sales"
+                                        name="sales"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.sales}
+                                        onChange={handleChange}
+                                    />
                                 </div>
 
+                                <div>
+                                    <label htmlFor="cogs" className="block mb-2 text-sm font-medium">Cost of Goods Sold
+                                        (COGS)</label>
+                                    <input
+                                        type="number"
+                                        id="cogs"
+                                        name="cogs"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.cogs}
+                                        onChange={handleChange}
+                                    />
+                                </div>
 
-                                {/* Section 4: Equity Distribution Tracker */}
-                                <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-                                    <h2 className="text-xl font-bold mb-4">Equity Distribution Tracker</h2>
-                                    <form className="space-y-4" onSubmit={handleSubmit4}>
-                                        <div>
-                                            <label className="block mb-2 text-sm font-medium">New Investor Name</label>
+                                <div>
+                                    <label htmlFor="operatingExpenses" className="block mb-2 text-sm font-medium">Operating
+                                        Expenses</label>
+                                    <input
+                                        type="number"
+                                        id="operatingExpenses"
+                                        name="operatingExpenses"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.operatingExpenses}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="depreciation"
+                                           className="block mb-2 text-sm font-medium">Depreciation</label>
+                                    <input
+                                        type="number"
+                                        id="depreciation"
+                                        name="depreciation"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.depreciation}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="amortization"
+                                           className="block mb-2 text-sm font-medium">Amortization</label>
+                                    <input
+                                        type="number"
+                                        id="amortization"
+                                        name="amortization"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.amortization}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="interestExpense" className="block mb-2 text-sm font-medium">Interest
+                                        Expense</label>
+                                    <input
+                                        type="number"
+                                        id="interestExpense"
+                                        name="interestExpense"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.interestExpense}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="interestIncome" className="block mb-2 text-sm font-medium">Interest
+                                        Income</label>
+                                    <input
+                                        type="number"
+                                        id="interestIncome"
+                                        name="interestIncome"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.interestIncome}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="otherIncome" className="block mb-2 text-sm font-medium">Other
+                                        Income</label>
+                                    <input
+                                        type="number"
+                                        id="otherIncome"
+                                        name="otherIncome"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.otherIncome}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="otherExpenses" className="block mb-2 text-sm font-medium">Other
+                                        Expenses</label>
+                                    <input
+                                        type="number"
+                                        id="otherExpenses"
+                                        name="otherExpenses"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.otherExpenses}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="taxRate" className="block mb-2 text-sm font-medium">Tax Rate</label>
+                                    <input
+                                        type="number"
+                                        id="taxRate"
+                                        name="taxRate"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={pnlInputs.taxRate}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg">Generate
+                                    P&L
+                                </button>
+                            </form>
+                            {plResult && plResult.result && (
+                                <div>
+                                    <h3>P&L Results</h3>
+                                    <ul>
+                                        <li>Gross Profit: {plResult.result.grossProfit}</li>
+                                        <li>Operating Profit: {plResult.result.operatingProfit}</li>
+                                        <li>EBT: {plResult.result.ebt}</li>
+                                        <li>Net Profit: {plResult.result.netProfit}</li>
+                                        <li>Interest Income: {plResult.result.interestIncome}</li>
+                                        <li>Interest Expense: {plResult.result.interestExpense}</li>
+                                        <li>Other Income: {plResult.result.otherIncome}</li>
+                                        <li>Other Expenses: {plResult.result.otherExpenses}</li>
+                                        <li>Tax Expense: {plResult.result.taxExpense}</li>
+                                    </ul>
+                                </div>
+                            )}
+
+
+                            {plotImage && (
+                                <div className="mt-6">
+                                    <h3 className="text-lg font-semibold">P&L Plot</h3>
+                                    <img src={plotImage} alt="P&L Plot" className="w-full"/>
+                                </div>
+                            )}
+                        </div>
+
+
+                        {/* Section 4: Equity Distribution Tracker */}
+                        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+                            <h2 className="text-xl font-bold mb-4">Equity Distribution Tracker</h2>
+                            <form className="space-y-4" onSubmit={handleSubmit4}>
+                                <div>
+                                    <label className="block mb-2 text-sm font-medium">New Investor Name</label>
+                                    <input
+                                        type="text"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="Enter investor's name"
+                                        value={equityDistribution.fundingRound.newInvestorName}
+                                        onChange={(e) =>
+                                            setEquityDistribution((prevState) => ({
+                                                ...prevState,
+                                                fundingRound: {
+                                                    ...prevState.fundingRound,
+                                                    newInvestorName: e.target.value,
+                                                },
+                                            }))
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block mb-2 text-sm font-medium">Investment Equity
+                                        Percentage</label>
+                                    <input
+                                        type="number"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="Enter equity percentage"
+                                        value={equityDistribution.fundingRound.investmentEquityPercentage}
+                                        onChange={(e) =>
+                                            setEquityDistribution((prevState) => ({
+                                                ...prevState,
+                                                fundingRound: {
+                                                    ...prevState.fundingRound,
+                                                    investmentEquityPercentage: e.target.value,
+                                                },
+                                            }))
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <h3 className="text-md font-medium mb-2">Shareholders</h3>
+                                    {equityDistribution.shareholders.map((shareholder, index) => (
+                                        <div key={index} className="space-y-2 mb-4">
                                             <input
                                                 type="text"
+                                                placeholder="Shareholder Name"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder="Enter investor's name"
-                                                value={equityDistribution.fundingRound.newInvestorName}
+                                                value={shareholder.name}
                                                 onChange={(e) =>
-                                                    setEquityDistribution((prevState) => ({
-                                                        ...prevState,
-                                                        fundingRound: {
-                                                            ...prevState.fundingRound,
-                                                            newInvestorName: e.target.value,
-                                                        },
-                                                    }))
+                                                    handleShareholderChange(index, "name", e.target.value)
                                                 }
                                             />
-                                        </div>
-                                        <div>
-                                            <label className="block mb-2 text-sm font-medium">Investment Equity Percentage</label>
                                             <input
                                                 type="number"
+                                                placeholder="Equity Percentage"
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder="Enter equity percentage"
-                                                value={equityDistribution.fundingRound.investmentEquityPercentage}
+                                                value={shareholder.equityPercentage}
                                                 onChange={(e) =>
-                                                    setEquityDistribution((prevState) => ({
-                                                        ...prevState,
-                                                        fundingRound: {
-                                                            ...prevState.fundingRound,
-                                                            investmentEquityPercentage: e.target.value,
-                                                        },
-                                                    }))
+                                                    handleShareholderChange(index, "equityPercentage", e.target.value)
                                                 }
                                             />
                                         </div>
-                                        <div>
-                                            <h3 className="text-md font-medium mb-2">Shareholders</h3>
-                                            {equityDistribution.shareholders.map((shareholder, index) => (
-                                                <div key={index} className="space-y-2 mb-4">
-                                                    <input
-                                                        type="text"
-                                                        placeholder="Shareholder Name"
-                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                        value={shareholder.name}
-                                                        onChange={(e) =>
-                                                            handleShareholderChange(index, "name", e.target.value)
-                                                        }
-                                                    />
-                                                    <input
-                                                        type="number"
-                                                        placeholder="Equity Percentage"
-                                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                        value={shareholder.equityPercentage}
-                                                        onChange={(e) =>
-                                                            handleShareholderChange(index, "equityPercentage", e.target.value)
-                                                        }
-                                                    />
-                                                </div>
-                                            ))}
-                                            <button
-                                                type="button"
-                                                className="px-4 py-2 text-sm bg-blue-400 text-white rounded-md"
-                                                onClick={handleAddShareholder}
-                                            >
-                                                Add Shareholder
-                                            </button>
-                                        </div>
-                                        <button
-                                            type="submit"
-                                            className="py-2.5 px-16 mt-5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
-                                        >
-                                            Submit
-                                        </button>
-                                    </form>
-
-                                    {/* Display the updated Cap Table */}
-                                    <div className="mt-6">
-                                        <h3 className="text-xl font-bold">Updated Cap Table</h3>
-                                        <table className="min-w-full bg-white rounded-lg shadow-md">
-                                            <thead>
-                                            <tr>
-                                                <th className="p-4 text-left">Name</th>
-                                                <th className="p-4 text-left">Total Equity</th>
-                                                <th className="p-4 text-left">Unvested Equity</th>
-                                                <th className="p-4 text-left">Vested Equity</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            {updatedCapTable.map((shareholder, index) => (
-                                                <tr key={index}>
-                                                    <td className="p-4">{shareholder.name}</td>
-                                                    <td className="p-4">{shareholder.total_equity}</td>
-                                                    <td className="p-4">{shareholder.unvested_equity}</td>
-                                                    <td className="p-4">{shareholder.vested_equity}</td>
-                                                </tr>
-                                            ))}
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    ))}
+                                    <button
+                                        type="button"
+                                        className="px-4 py-2 text-sm bg-blue-400 text-white rounded-md"
+                                        onClick={handleAddShareholder}
+                                    >
+                                        Add Shareholder
+                                    </button>
                                 </div>
+                                <button
+                                    type="submit"
+                                    className="py-2.5 px-16 mt-5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+
+                            {/* Display the updated Cap Table */}
+                            <div className="mt-6">
+                                <h3 className="text-xl font-bold">Updated Cap Table</h3>
+                                <table className="min-w-full bg-white rounded-lg shadow-md">
+                                    <thead>
+                                    <tr>
+                                        <th className="p-4 text-left">Name</th>
+                                        <th className="p-4 text-left">Total Equity</th>
+                                        <th className="p-4 text-left">Unvested Equity</th>
+                                        <th className="p-4 text-left">Vested Equity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {updatedCapTable.map((shareholder, index) => (
+                                        <tr key={index}>
+                                            <td className="p-4">{shareholder.name}</td>
+                                            <td className="p-4">{shareholder.total_equity}</td>
+                                            <td className="p-4">{shareholder.unvested_equity}</td>
+                                            <td className="p-4">{shareholder.vested_equity}</td>
+                                        </tr>
+                                    ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </section>
-            </main>
-
-            {/* Notifications Container */}
-            {showNotifications && (
-                <NotificationPanel />
-            )}
-
-            <ChatbaseChatbot />
-
-        </div>
+                </div>
+            </div>
+        </section>
     );
 };
 

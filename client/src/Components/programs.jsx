@@ -15,7 +15,7 @@ const Programs = () => {
     return ( 
         <div className="bg-white shadow-lg  rounded p-8 pb-12 mt-5 ml-10 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">{'Bizz Programmes'}</h3>
-      {data.map((post,index) => (
+      {data.slice(0, 3).map((post,index) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
             <img

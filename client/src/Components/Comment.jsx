@@ -5,13 +5,14 @@ import FeaturedCard from './FeaturedCard';
 // import { submitComment } from '../services';
 import Cookies from "js-cookie";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const CommentsForm = ({slug}) => {
     const [error, setError] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [formData, setFormData] = useState({name: "", file1: null, file2: null, comment: "", storeData: false});
+    const navigate = useNavigate();
 
-    // Handle input changes
     const onInputChange = (e) => {
         const {target} = e;
         if (target.type === 'checkbox') {
@@ -32,7 +33,6 @@ const CommentsForm = ({slug}) => {
         }
     };
 
-    // Fetch the data for the posts
     const [data1, setData1] = useState([]);
 
     useEffect(() => {
@@ -42,25 +42,21 @@ const CommentsForm = ({slug}) => {
             .catch((error) => console.error("Error fetching data:", error));
     }, []);
 
-    // Handle the post submission
     const handlePostSubmission = async () => {
         setError(false);
         const {name, file1, file2, comment} = formData;
 
-        // Check if all fields are filled out
         if (!name || !file1 || !file2 || !comment) {
             setError(true);
             return;
         }
 
-        // Prepare the form data to send
         const formDataToSubmit = new FormData();
         formDataToSubmit.append('Title', name);
         formDataToSubmit.append('Content', comment);
         formDataToSubmit.append('file1', file1);
         formDataToSubmit.append('file2', file2);
 
-        // Send the data to the backend
         try {
             const token = Cookies.get("token")
             const response = await axios.post('http://localhost:3000/blog',
@@ -68,16 +64,19 @@ const CommentsForm = ({slug}) => {
                     headers: {'Authorization': `Bearer ${token}`},
                 });
 
-            const result = await response.json();
+            // const result = await response.json();
 
             if (response.status === 200) {
                 setShowSuccessMessage(true);
                 setTimeout(() => {
                     setShowSuccessMessage(false);
                 }, 3000);
-            } else {
-                console.error('Error:', result.error);
+
+                // Correctly navigate to the newly created blog post using the returned ID
+                navigate(`/blogs/${response.data._id}`);  // Use `response.data._id` to get the blog ID
             }
+
+
         } catch (error) {
             console.error('Error submitting blog:', error);
         }

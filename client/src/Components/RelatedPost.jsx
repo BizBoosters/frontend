@@ -17,7 +17,7 @@ const RelatedPost = () => {
     return ( 
         <div className="bg-white shadow-lg  rounded p-8 pb-12 ml-10 mb-8">
       <h3 className="text-xl mb-8 font-semibold border-b pb-4">{'Related Posts'}</h3>
-      {data.map((post,index) => (
+      {data.slice(0, 3).map((post,index) => (
         <div key={index} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
             <img
@@ -25,7 +25,7 @@ const RelatedPost = () => {
               height="60px"
               width="60px"
               className="align-middle rounded-full border aspect-square"
-              src={post.file2 ? `http://localhost:3000${post.file1}` : ''}
+              src={post.file2 ? `${post.file1}` : ''}
             />
           </div>
           <div className="flex-grow ml-4">
